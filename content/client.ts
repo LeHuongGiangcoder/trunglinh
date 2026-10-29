@@ -305,11 +305,11 @@ export const dresscode = {
  * repo — nó ở ~/.glow/rsvp.env.
  */
 export const rsvp = {
-  mode: "general" as "general" | "personalized",
+  mode: "personalized" as "general" | "personalized",
   /** URL của Glow RSVP Hub — skill glow-rsvp điền vào. */
-  endpoint: "",
+  endpoint: "https://script.google.com/macros/s/AKfycbxB9Oc65toi-UmEfTB_J6d3l8LQoNQvhpyY1IaIIKR2h8I59K1NxvCGTZckTqLaT5y_/exec",
   /** Slug của khách, trùng subdomain: ten-khach.gloweb.site → "ten-khach" */
-  client: "",
+  client: "trunglinh",
 
   eyebrow: "R.S.V.P",
   title: "Quý khách sẽ đến chứ?",
