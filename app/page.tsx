@@ -1,9 +1,11 @@
 import { ExperienceProvider } from "@/components/experience/ExperienceProvider";
 import { GuestProvider } from "@/components/experience/GuestProvider";
+import { Album } from "@/components/sections/Album";
 import { Agenda } from "@/components/sections/Agenda";
 import { Dresscode } from "@/components/sections/Dresscode";
 import { Gallery } from "@/components/sections/Gallery";
 import { Hero } from "@/components/sections/Hero";
+import { HoneymoonFund } from "@/components/sections/HoneymoonFund";
 import { Intro } from "@/components/sections/Intro";
 import { LittleChild } from "@/components/sections/LittleChild";
 import { LoveStory } from "@/components/sections/LoveStory";
@@ -25,12 +27,14 @@ const SECTIONS: Record<SectionId, () => React.ReactNode> = {
   hero: Hero,
   saveTheDate: SaveTheDate,
   littleChild: LittleChild,
+  album: Album,
   venue: Venue,
   loveStory: LoveStory,
   gallery: Gallery,
   weddingInfo: WeddingInfo,
   agenda: Agenda,
   dresscode: Dresscode,
+  honeymoonFund: HoneymoonFund,
   rsvp: Rsvp,
   thankYou: ThankYou,
 };

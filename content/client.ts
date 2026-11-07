@@ -20,12 +20,14 @@ export type SectionId =
   | "hero"
   | "saveTheDate"
   | "littleChild"
+  | "album"
   | "venue"
   | "loveStory"
   | "gallery"
   | "weddingInfo"
   | "agenda"
   | "dresscode"
+  | "honeymoonFund"
   | "rsvp"
   | "thankYou";
 
@@ -42,11 +44,9 @@ export const sections: SectionId[] = [
   "saveTheDate",
   "gallery",
   "littleChild",
+  "album",
   "venue",
-  "loveStory",
-  "weddingInfo",
-  "agenda",
-  "dresscode",
+  "honeymoonFund",
   "rsvp",
   "thankYou",
 ];
@@ -116,14 +116,22 @@ export const design: Record<SectionId, SectionDesign> = {
   hero: { anchor: "hero", tone: "dark", background: "/images/hero.jpg", overlay: 0, focus: "50% 62%" },
   saveTheDate: { anchor: "save-the-date", tone: "light", background: "save-the-date-paper", overlay: 0 },
   littleChild: { anchor: "little-child", tone: "sky", background: "little-child-sky", overlay: 0 },
+  album: { anchor: "album", tone: "light", background: "gallery-paper", overlay: 0 },
   venue: { anchor: "venue", tone: "light", background: "venue", overlay: 0 },
   loveStory: { anchor: "love-story", tone: "paper" },
   gallery: { anchor: "gallery", tone: "light", background: "save-the-date-paper", overlay: 0 },
   weddingInfo: { anchor: "wedding-info", tone: "dark" },
   agenda: { anchor: "agenda", tone: "light" },
   dresscode: { anchor: "dresscode", tone: "paper" },
-  rsvp: { anchor: "rsvp", tone: "light" },
-  thankYou: { anchor: "thank-you", tone: "dark" },
+  honeymoonFund: { anchor: "honeymoon-fund", tone: "light", background: "gallery-paper", overlay: 0 },
+  rsvp: { anchor: "rsvp", tone: "sky" },
+  thankYou: {
+    anchor: "thank-you",
+    tone: "dark",
+    background: "/images/save-the-date-01.jpg",
+    overlay: 0,
+    focus: "60% 100%",
+  },
 };
 
 /* ------------------------------------------------------------------ COUPLE */
@@ -265,6 +273,40 @@ export const littleChild = {
   pauseLabel: "Tạm dừng",
 };
 
+/* ------------------------------------------------------------------ ALBUM */
+
+/**
+ * Trang album thứ hai, dựng từ bộ layer brand/gallery 2: ảnh cặp đôi trong
+ * khung vòm, mây hai bên, bướm bay, và một băng ảnh năm thẻ chuyển bằng hai
+ * mũi tên (hoặc vuốt ngang). Tên dưới băng ảnh lấy từ `couple`.
+ */
+export const album = {
+  title: "Album ảnh cưới",
+  /** Ảnh trong khung vòm — đã cắt đúng khổ 4961×2480 của artboard. */
+  arc: {
+    src: "/images/album-arc.jpg",
+    alt: "Chú rể nắm tay cô dâu xoay một vòng trong studio",
+  },
+  quote:
+    "“Giữa muôn vàn cuộc gặp gỡ, chúng mình đã tìm thấy nhau. Từ hai câu chuyện riêng biệt, giờ đây cùng viết nên một hành trình mang tên hạnh phúc.”",
+  /** Ảnh nằm giữa băng lúc mới vào trang (chỉ số trong `shots`). */
+  start: 2,
+  /** Ít nhất 7 ảnh để băng xoay vòng mà không thấy thẻ nhảy từ mép này sang mép kia. */
+  shots: [
+    { src: "/images/album-01.jpg", alt: "Cô dâu tựa vai chú rể trên ghế sofa da" },
+    { src: "/images/album-02.jpg", alt: "Cô dâu chú rể ngồi bên khung cửa sổ lớn" },
+    { src: "/images/album-03.jpg", alt: "Chú rể nâng cằm cô dâu dưới tấm voan" },
+    { src: "/images/album-04.jpg", alt: "Cô dâu xoay váy trong tay chú rể" },
+    { src: "/images/album-05.jpg", alt: "Cô dâu chú rể nắm tay bước đi" },
+    { src: "/images/album-06.jpg", alt: "Chú rể hôn má cô dâu" },
+    { src: "/images/album-07.jpg", alt: "Cô dâu đứng sau chú rể đang ngồi trên sofa" },
+    { src: "/images/album-08.jpg", alt: "Cô dâu chú rể đứng trước phông nâu" },
+    { src: "/images/album-09.jpg", alt: "Cô dâu cúi nhìn chú rể đang tựa lưng" },
+  ],
+  prevLabel: "Ảnh trước",
+  nextLabel: "Ảnh sau",
+};
+
 /* -------------------------------------------------------------- LOVE STORY */
 
 export const loveStory = {
@@ -397,6 +439,18 @@ export const dresscode = {
   avoid: "Xin hạn chế trang phục màu trắng tinh của cô dâu.",
 };
 
+/* ---------------------------------------------------------- HONEYMOON FUND */
+
+export const honeymoonFund = {
+  eyebrow: "Honeymoon Fund",
+  title: "Quỹ trăng mật",
+  intro: "Sự hiện diện của quý khách là món quà lớn nhất với chúng mình.",
+  body: "Nếu quý khách muốn gửi thêm một chút yêu thương, chúng mình xin được đón nhận để cùng nhau thực hiện chuyến đi đầu tiên của đời vợ chồng. Quý khách chỉ cần quét mã QR bên dưới.",
+  /** Mã QR chuyển khoản — thay file public/images/fund-qr.jpg. */
+  qr: { src: "/images/fund-qr.jpg", alt: "Mã QR chuyển khoản quỹ trăng mật của cô dâu", width: 1290, height: 1135 },
+  caption: "Chân thành cảm ơn quý khách.",
+};
+
 /* ------------------------------------------------------------------- RSVP */
 
 /**
@@ -421,20 +475,26 @@ export const rsvp = {
   note: "Nhắn giúp chúng mình một tiếng để gia đình chuẩn bị chỗ ngồi chu đáo.",
   deadline: "Vui lòng phản hồi trước ngày 30 . 11 . 2026",
 
+  /**
+   * Nhãn trùng tên cột trong Sheet "RSVP · trunglinh" (tab Guests Management):
+   * Tham dự · Số người đi cùng · Khách nhà · Lời chúc. Key gửi đi
+   * (attending/guests/side/message) chính là khoá cột — đổi key thì chạy
+   * `~/glow-tools/glow-rsvp.sh fields trunglinh --fields "..."`.
+   */
   fields: {
     name: { label: "Họ và tên", placeholder: "Nguyễn Văn A" },
     attending: {
-      label: "Quý khách có tham dự?",
+      label: "Tham dự",
       yes: "Có, tôi sẽ đến",
       no: "Rất tiếc, tôi xin vắng",
     },
-    guests: { label: "Số người đi cùng", none: "Tôi đi một mình", max: 4 },
+    guests: { label: "Số người đi cùng", none: "Không, tôi đi một mình", max: 4 },
     side: {
       label: "Khách nhà",
       options: ["Nhà trai", "Nhà gái"],
     },
     message: {
-      label: "Lời chúc gửi cô dâu chú rể",
+      label: "Lời chúc",
       placeholder: "Chúc hai bạn trăm năm hạnh phúc…",
     },
   },
@@ -458,8 +518,6 @@ export const thankYou = {
     "đồng hành cùng chúng mình trong ngày trọng đại.",
   ],
   signature: "Tên Chú Rể & Tên Cô Dâu",
-  image: "/images/couple-06.jpg",
-  imageAlt: "Cô dâu và chú rể",
 };
 
 /* ------------------------------------------------------------------ NHẠC */

@@ -125,6 +125,10 @@ export const typeScale = {
   posterNote: { size: "3.8cqw", line: "1.2", tracking: "0.005em" },
   /** Nhãn nút nhỏ trên artwork — có sàn để điện thoại hẹp vẫn đọc được. */
   posterLabel: { size: "max(0.8125rem, 2.6cqw)", line: "1.2", tracking: "0.04em" },
+  /** Tên viết tay đặt trên artwork (font script) — co theo khung. */
+  posterScript: { size: "3.3cqw", line: "1.2", tracking: "0em" },
+  /** Đoạn trích dẫn vài dòng trên artwork — có sàn để điện thoại hẹp vẫn đọc được. */
+  posterQuote: { size: "max(0.8125rem, 3cqw)", line: "1.5", tracking: "0.005em" },
   /** Dòng chữ nhỏ in hoa trên tiêu đề section */
   eyebrow: { size: "0.75rem", line: "1.2", tracking: "0.26em" },
 } as const;
@@ -174,6 +178,8 @@ export const radius = {
   /** Ô ảnh trên một artwork co giãn — theo bề ngang khung chứa */
   tile: "0.45cqw",
   tileLg: "0.8cqw",
+  /** Thẻ ảnh lớn trên artwork (băng ảnh album) */
+  tileXl: "1.8cqw",
 } as const;
 
 export const shadow = {

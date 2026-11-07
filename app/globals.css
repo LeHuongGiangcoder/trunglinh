@@ -77,6 +77,12 @@
   --text-poster-label: var(--t-text-poster-label);
   --text-poster-label--line-height: var(--t-leading-poster-label);
   --text-poster-label--letter-spacing: var(--t-tracking-poster-label);
+  --text-poster-script: var(--t-text-poster-script);
+  --text-poster-script--line-height: var(--t-leading-poster-script);
+  --text-poster-script--letter-spacing: var(--t-tracking-poster-script);
+  --text-poster-quote: var(--t-text-poster-quote);
+  --text-poster-quote--line-height: var(--t-leading-poster-quote);
+  --text-poster-quote--letter-spacing: var(--t-tracking-poster-quote);
   --text-eyebrow: var(--t-text-eyebrow);
   --text-eyebrow--line-height: var(--t-leading-eyebrow);
   --text-eyebrow--letter-spacing: var(--t-tracking-eyebrow);
@@ -99,6 +105,7 @@
   --radius-btn: var(--t-radius-btn);
   --radius-tile: var(--t-radius-tile);
   --radius-tile-lg: var(--t-radius-tile-lg);
+  --radius-tile-xl: var(--t-radius-tile-xl);
   --shadow-paper: var(--t-shadow-paper);
   --shadow-lift: var(--t-shadow-lift);
   --ease-glow: var(--t-ease);
@@ -215,6 +222,37 @@ h4 {
     mask-image: linear-gradient(90deg, #000 calc(var(--wipe) - 40%), transparent var(--wipe));
   }
 
+  /* Mép dưới tan dần vào nền — cho ảnh lót dưới mây / băng ảnh. */
+  .fade-bottom {
+    -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent);
+    mask-image: linear-gradient(180deg, #000 72%, transparent);
+  }
+
+  /*
+    Con vật đập cánh (bướm). Cấu trúc ba lớp, cả ba cùng một hộp và cùng
+    transform-origin đặt đúng thân con vật (--body, ví dụ "40% 60%"):
+      .flutter            xoay ngược --axis để trả hình về góc gốc
+        .flutter-wings    co giãn theo chiều ngang = cánh khép / mở
+          img             xoay --axis cho thân dựng đứng
+    Nhờ vậy cánh luôn gập quanh thân dù hình vẽ con bướm nằm nghiêng.
+  */
+  .flutter,
+  .flutter-wings,
+  .flutter-wings > img {
+    display: block;
+    transform-origin: var(--body, 50% 50%);
+  }
+  .flutter {
+    transform: rotate(calc(var(--axis, 0deg) * -1));
+  }
+  .flutter-wings {
+    animation: glow-flap 1.9s ease-in-out infinite;
+    animation-delay: var(--flap-delay, 0s);
+  }
+  .flutter-wings > img {
+    transform: rotate(var(--axis, 0deg));
+  }
+
   /* Đệm trên cho khối nằm sát mép màn hình — chừa tai thỏ / Dynamic Island. */
   .safe-top {
     padding-top: max(var(--t-space-block), calc(env(safe-area-inset-top) + var(--t-space-tight)));
@@ -305,5 +343,21 @@ h4 {
     min-height: 7rem;
     line-height: var(--t-leading-body);
     resize: vertical;
+  }
+}
+
+/* Ba nhịp vỗ cánh rồi lượn một quãng — dùng cho .flutter-wings */
+@keyframes glow-flap {
+  0%,
+  20%,
+  40%,
+  60%,
+  100% {
+    transform: scaleX(1);
+  }
+  10%,
+  30%,
+  50% {
+    transform: scaleX(0.22);
   }
 }

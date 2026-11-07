@@ -21,6 +21,7 @@ export const OPEN_EVENT = "glow:open";
  *   data-reveal-delay="ms"     trễ, cho cả cuộn tới lẫn cú mở thiệp
  *   [data-flicker]       nhấp nháy hiện lên khi thiệp mở, rồi thỉnh thoảng chớp lại
  *   [data-spin="N"]      xoay tròn mãi, N giây một vòng (đĩa than)
+ *   [data-flit="N"]      lượn quanh chỗ đứng, xa nhất N% kích thước của chính nó (bướm)
  *   [data-scene]         một cảnh chạy theo thanh cuộn (scrub), từ "start" tới "end":
  *       data-scene-start / data-scene-end   mốc ScrollTrigger, mặc định "top 85%" / "center 45%"
  *       [data-scene-x="N"] / [data-scene-y="N"]   con trôi tới xPercent / yPercent N
@@ -93,6 +94,22 @@ export function Motion() {
           duration: Number(node.dataset.spin) || 12,
           ease: "none",
           repeat: -1,
+        });
+      }
+
+      /* Bướm: lượn quanh chỗ đứng, mỗi chặng một điểm mới (repeatRefresh
+         rút lại số ngẫu nhiên). Cánh đập bằng CSS (.flutter), ở đây chỉ bay. */
+      for (const node of gsap.utils.toArray<HTMLElement>("[data-flit]")) {
+        const range = Number(node.dataset.flit) || 60;
+        gsap.to(node, {
+          xPercent: `random(${-range}, ${range})`,
+          yPercent: `random(${-range * 0.7}, ${range * 0.7})`,
+          rotation: "random(-12, 12)",
+          duration: gsap.utils.random(2.6, 4.2),
+          ease: "sine.inOut",
+          repeat: -1,
+          repeatRefresh: true,
+          delay: gsap.utils.random(0, 1.2),
         });
       }
 
