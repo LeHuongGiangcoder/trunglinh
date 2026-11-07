@@ -15,8 +15,6 @@ import { rsvp } from "@/content/client";
 export type Guest = {
   slug: string;
   name: string;
-  /** Kiểu thiệp, khớp cột "Invitation type" trong Sheet của Glow RSVP Hub. */
-  type: "general" | "intimate";
 };
 
 type GuestState = {
@@ -34,7 +32,8 @@ const readSlug = () => new URLSearchParams(window.location.search).get("to");
 
 /**
  * Chỉ có tác dụng khi `rsvp.mode === "personalized"`: tra tên khách từ Glow
- * RSVP Hub theo slug trong link mời. Hub trả `{ ok, name, type }`.
+ * RSVP Hub theo slug trong link mời. Hub trả `{ ok, name }`; site này không
+ * dùng kiểu thiệp (Invitation type) nên không đọc `type`.
  *
  * Tra không ra (slug sai, hub chưa nối) thì coi như khách thường — trang vẫn
  * chạy đủ, chỉ không gọi tên.
@@ -55,17 +54,13 @@ export function GuestProvider({ children }: { children: ReactNode }) {
 
     fetch(url)
       .then((res) => res.json())
-      .then((data: { ok?: boolean; name?: string; type?: string }) => {
+      .then((data: { ok?: boolean; name?: string }) => {
         if (!alive) return;
         if (!data?.ok || !data.name) {
           setFailed(true);
           return;
         }
-        setGuest({
-          slug,
-          name: data.name,
-          type: data.type === "intimate" ? "intimate" : "general",
-        });
+        setGuest({ slug, name: data.name });
       })
       .catch(() => {
         if (alive) setFailed(true);
