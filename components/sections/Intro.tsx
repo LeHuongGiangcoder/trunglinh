@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 
+import { CherubReveal } from "@/components/experience/CherubReveal";
 import { useExperience } from "@/components/experience/ExperienceProvider";
 import { Button } from "@/components/ui/Button";
 import { Divider } from "@/components/ui/Divider";
@@ -20,6 +21,9 @@ export function Intro() {
 
   if (opened) return null;
 
+  // Hoạt cảnh thiên thần kéo giấy — xem components/experience/CherubReveal.tsx
+  if (intro.variant === "cherub") return <CherubReveal />;
+
   /* Màn mở thiệp không dùng SectionWrapper (nó phủ kín màn hình, nằm ngoài
      luồng cuộn), nên nó tự đọc phần mặt nhìn của mình từ `design`. */
   const spec = design.intro;
@@ -36,11 +40,13 @@ export function Intro() {
       {background ? (
         <>
           <Image src={background.src} alt="" fill sizes="100vw" priority className="object-cover" />
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-tone-bg"
-            style={{ opacity: spec.overlay ?? 0.55 }}
-          />
+          {spec.overlay === 0 ? null : (
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-tone-bg"
+              style={{ opacity: spec.overlay ?? 0.55 }}
+            />
+          )}
         </>
       ) : null}
 

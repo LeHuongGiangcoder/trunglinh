@@ -13,6 +13,8 @@ type SectionWrapperProps = {
   /** Bề rộng nội dung: "site" cho layout thường, "prose" cho khối chữ dài. */
   width?: "site" | "prose" | "bleed";
   labelledBy?: string;
+  /** Ảnh nền nằm ngay màn đầu (hero) — tải sớm thay vì lazy. */
+  priority?: boolean;
   /** Chỉ cho layout (grid, min-height…), tuyệt đối không dùng để đặt màu hay size chữ. */
   className?: string;
   children: ReactNode;
@@ -34,6 +36,7 @@ export function SectionWrapper({
   flush = false,
   width = "site",
   labelledBy,
+  priority = false,
   className = "",
   children,
 }: SectionWrapperProps) {
@@ -60,9 +63,20 @@ export function SectionWrapper({
     >
       {background ? (
         <div aria-hidden className="absolute inset-0 -z-20">
-          <Image src={background.src} alt="" fill sizes="100vw" className="object-cover" />
+          <Image
+            src={background.src}
+            alt=""
+            fill
+            sizes="100vw"
+            priority={priority}
+            data-section-photo
+            className="object-cover"
+            style={spec.focus ? { objectPosition: spec.focus } : undefined}
+          />
           {/* Lớp phủ bằng chính màu nền của tông, để chữ đọc được dù ảnh sáng hay tối */}
-          <div className="absolute inset-0 bg-tone-bg" style={{ opacity: spec.overlay ?? 0.7 }} />
+          {spec.overlay === 0 ? null : (
+            <div className="absolute inset-0 bg-tone-bg" style={{ opacity: spec.overlay ?? 0.7 }} />
+          )}
         </div>
       ) : null}
 

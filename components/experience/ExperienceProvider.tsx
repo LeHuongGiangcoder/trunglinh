@@ -20,7 +20,16 @@ type ExperienceValue = {
   /** Có file nhạc và phát được không. False thì nút nhạc tự ẩn. */
   hasAudio: boolean;
   musicOn: boolean;
+  /** Mở thiệp xong: bỏ màn Intro, mở khoá cuộn, cho hero hiện, bật nhạc nếu chưa. */
   open: () => void;
+  /**
+   * Bật nhạc — gọi NGAY trong cú chạm đầu tiên của khách. Dùng cho màn mở
+   * thiệp có hoạt cảnh dài: nhạc lên từ lúc chạm, còn `open()` đến cuối mới gọi.
+   * Chỉ chạy một lần; khách tắt nhạc rồi thì không tự bật lại.
+   */
+  startMusic: () => void;
+  /** Cho các khối `data-hero` hiện ra (bắn OPEN_EVENT), trước khi màn Intro gỡ hẳn. */
+  revealHero: () => void;
   toggleMusic: () => void;
 };
 
@@ -53,6 +62,8 @@ export function ExperienceProvider({
   const [musicOn, setMusicOn] = useState(false);
   const [hasAudio, setHasAudio] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const musicStarted = useRef(false);
+  const heroRevealed = useRef(false);
 
   const enabled = music.enabled && music.src !== "";
 
@@ -90,10 +101,15 @@ export function ExperienceProvider({
     return audioRef.current;
   }, []);
 
-  const open = useCallback(() => {
-    setOpened(true);
+  const revealHero = useCallback(() => {
+    if (heroRevealed.current) return;
+    heroRevealed.current = true;
     window.dispatchEvent(new Event(OPEN_EVENT));
-    if (!enabled) return;
+  }, []);
+
+  const startMusic = useCallback(() => {
+    if (!enabled || musicStarted.current) return;
+    musicStarted.current = true;
     getAudio()
       .play()
       .then(() => {
@@ -103,8 +119,15 @@ export function ExperienceProvider({
       .catch(() => setMusicOn(false));
   }, [enabled, getAudio]);
 
+  const open = useCallback(() => {
+    setOpened(true);
+    revealHero();
+    startMusic();
+  }, [revealHero, startMusic]);
+
   const toggleMusic = useCallback(() => {
     if (!enabled) return;
+    musicStarted.current = true;
     const audio = getAudio();
     if (musicOn) {
       audio.pause();
@@ -123,8 +146,16 @@ export function ExperienceProvider({
   useEffect(() => () => audioRef.current?.pause(), []);
 
   const value = useMemo(
-    () => ({ opened, hasAudio: enabled && hasAudio, musicOn, open, toggleMusic }),
-    [opened, enabled, hasAudio, musicOn, open, toggleMusic],
+    () => ({
+      opened,
+      hasAudio: enabled && hasAudio,
+      musicOn,
+      open,
+      startMusic,
+      revealHero,
+      toggleMusic,
+    }),
+    [opened, enabled, hasAudio, musicOn, open, startMusic, revealHero, toggleMusic],
   );
 
   return <ExperienceContext.Provider value={value}>{children}</ExperienceContext.Provider>;

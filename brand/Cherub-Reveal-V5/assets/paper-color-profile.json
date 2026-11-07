@@ -1,0 +1,85 @@
+{
+  "version": "4.0",
+  "reference": "../source/reference-original.webp",
+  "colorSpace": "sRGB",
+  "method": "Piecewise monotonic per-channel transfer in native SVG export; no redraw",
+  "sampleQuantiles": [
+    0.1,
+    0.5,
+    0.95
+  ],
+  "referenceQuantiles": [
+    [
+      229,
+      221,
+      211
+    ],
+    [
+      245,
+      241,
+      235
+    ],
+    [
+      253,
+      252,
+      251
+    ]
+  ],
+  "inputQuantiles": {
+    "left": [
+      [
+        230,
+        217,
+        203
+      ],
+      [
+        243,
+        234,
+        224
+      ],
+      [
+        251,
+        248,
+        244
+      ]
+    ],
+    "right": [
+      [
+        225,
+        214,
+        203
+      ],
+      [
+        240,
+        232,
+        225
+      ],
+      [
+        250,
+        247,
+        244
+      ]
+    ]
+  },
+  "baseIvory": "#f4f0ea",
+  "bakedInto": [
+    "paper-left-full.png",
+    "paper-right-full.png",
+    "paper-left-full.webp",
+    "paper-right-full.webp"
+  ],
+  "runtimeFilterRequired": false,
+  "alphaChanged": false,
+  "nativeRasterRoundingCompensation": {
+    "left": [
+      1,
+      0,
+      0
+    ],
+    "right": [
+      0,
+      0,
+      0
+    ]
+  }
+}

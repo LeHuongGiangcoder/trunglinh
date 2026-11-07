@@ -24,6 +24,11 @@
   --color-gold-soft: var(--t-color-gold-soft);
   --color-surface: var(--t-color-surface);
   --color-line: var(--t-color-line);
+  --color-sky: var(--t-color-sky);
+  --color-sky-ink: var(--t-color-sky-ink);
+  --color-sky-line: var(--t-color-sky-line);
+  --color-cocoa: var(--t-color-cocoa);
+  --color-taupe: var(--t-color-taupe);
 
   /* Màu theo tông của section — SectionWrapper đặt data-tone, con tự đổi màu */
   --color-tone-bg: var(--t-section-bg);
@@ -57,6 +62,21 @@
   --text-base--line-height: var(--t-leading-body);
   --text-small: var(--t-text-small);
   --text-small--line-height: var(--t-leading-small);
+  --text-poster: var(--t-text-poster);
+  --text-poster--line-height: var(--t-leading-poster);
+  --text-poster--letter-spacing: var(--t-tracking-poster);
+  --text-poster-title: var(--t-text-poster-title);
+  --text-poster-title--line-height: var(--t-leading-poster-title);
+  --text-poster-title--letter-spacing: var(--t-tracking-poster-title);
+  --text-poster-caption: var(--t-text-poster-caption);
+  --text-poster-caption--line-height: var(--t-leading-poster-caption);
+  --text-poster-caption--letter-spacing: var(--t-tracking-poster-caption);
+  --text-poster-note: var(--t-text-poster-note);
+  --text-poster-note--line-height: var(--t-leading-poster-note);
+  --text-poster-note--letter-spacing: var(--t-tracking-poster-note);
+  --text-poster-label: var(--t-text-poster-label);
+  --text-poster-label--line-height: var(--t-leading-poster-label);
+  --text-poster-label--letter-spacing: var(--t-tracking-poster-label);
   --text-eyebrow: var(--t-text-eyebrow);
   --text-eyebrow--line-height: var(--t-leading-eyebrow);
   --text-eyebrow--letter-spacing: var(--t-tracking-eyebrow);
@@ -68,6 +88,7 @@
   --spacing-stack: var(--t-space-stack);
   --spacing-tight: var(--t-space-tight);
   --spacing-tap: var(--t-size-tap);
+  --spacing-cell: var(--t-size-cell);
 
   --container-site: var(--t-size-container-site);
   --container-prose: var(--t-size-container-prose);
@@ -76,6 +97,8 @@
   --radius-paper: var(--t-radius-paper);
   --radius-card: var(--t-radius-card);
   --radius-btn: var(--t-radius-btn);
+  --radius-tile: var(--t-radius-tile);
+  --radius-tile-lg: var(--t-radius-tile-lg);
   --shadow-paper: var(--t-shadow-paper);
   --shadow-lift: var(--t-shadow-lift);
   --ease-glow: var(--t-ease);
@@ -177,8 +200,36 @@ h4 {
     Ẩn sẵn bằng CSS để không nháy một nhịp trước khi GSAP kịp chạy. JS tắt thì
     thẻ <noscript> trong layout.tsx trả lại opacity, nên khách vẫn đọc đủ thiệp.
   */
-  [data-reveal] {
+  [data-reveal],
+  [data-flicker] {
     opacity: 0;
+  }
+
+  /*
+    Hiện dần theo một vệt mềm từ trái sang phải. Motion.tsx chạy --wipe từ 0%
+    tới 140%; mặc định 140% để khi không có JS thì chữ vẫn hiện đủ.
+  */
+  .wipe-mask {
+    --wipe: 140%;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--wipe) - 40%), transparent var(--wipe));
+    mask-image: linear-gradient(90deg, #000 calc(var(--wipe) - 40%), transparent var(--wipe));
+  }
+
+  /* Đệm trên cho khối nằm sát mép màn hình — chừa tai thỏ / Dynamic Island. */
+  .safe-top {
+    padding-top: max(var(--t-space-block), calc(env(safe-area-inset-top) + var(--t-space-tight)));
+  }
+
+  /*
+    Màn mở thiệp dựng trên một artboard cố định (toạ độ px của kit thiết kế),
+    rồi co cả khối cho vừa màn hình. Kích thước artboard do component đặt.
+  */
+  .artboard {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+    pointer-events: none;
   }
 
   .container-site {

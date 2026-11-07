@@ -5,9 +5,12 @@ import { Dresscode } from "@/components/sections/Dresscode";
 import { Gallery } from "@/components/sections/Gallery";
 import { Hero } from "@/components/sections/Hero";
 import { Intro } from "@/components/sections/Intro";
+import { LittleChild } from "@/components/sections/LittleChild";
 import { LoveStory } from "@/components/sections/LoveStory";
 import { Rsvp } from "@/components/sections/Rsvp";
+import { SaveTheDate } from "@/components/sections/SaveTheDate";
 import { ThankYou } from "@/components/sections/ThankYou";
+import { Venue } from "@/components/sections/Venue";
 import { WeddingInfo } from "@/components/sections/WeddingInfo";
 import { Motion } from "@/components/ui/Motion";
 import { MusicToggle } from "@/components/ui/MusicToggle";
@@ -20,6 +23,9 @@ import { sections, type SectionId } from "@/content/client";
 const SECTIONS: Record<SectionId, () => React.ReactNode> = {
   intro: Intro,
   hero: Hero,
+  saveTheDate: SaveTheDate,
+  littleChild: LittleChild,
+  venue: Venue,
   loveStory: LoveStory,
   gallery: Gallery,
   weddingInfo: WeddingInfo,

@@ -35,6 +35,14 @@ export const palette = {
   /** Nền thẻ, khung ảnh */
   surface: "#ffffff",
   line: "#d9cfbd",
+  /** Nền trời xanh của màn mở thiệp thiên thần (kit Cherub Reveal) */
+  sky: "#e3eef0",
+  skyInk: "#4f7886",
+  skyLine: "#b4cad0",
+  /** Mực nâu của thẻ lịch Save the Date (khớp chữ tên trong calendar-card) */
+  cocoa: "#6f4a32",
+  /** Mực nâu xám của trang Album (khớp nét "Love" và tim vẽ tay) */
+  taupe: "#6e5b47",
 } as const;
 
 /**
@@ -67,6 +75,15 @@ export const tones = {
     line: "rgba(251, 247, 240, 0.28)",
     contrast: palette.cream,
   },
+  /** Màn mở thiệp thiên thần: nền trời xanh nhạt, chữ xanh xám */
+  sky: {
+    bg: palette.sky,
+    fg: palette.skyInk,
+    muted: palette.skyInk,
+    accent: palette.skyInk,
+    line: palette.skyLine,
+    contrast: palette.cream,
+  },
 } as const;
 
 export type Tone = keyof typeof tones;
@@ -97,6 +114,17 @@ export const typeScale = {
   lead: { size: "clamp(1.0625rem, 1.5vw, 1.1875rem)", line: "1.65", tracking: "0em" },
   body: { size: "1rem", line: "1.7", tracking: "0em" },
   small: { size: "0.875rem", line: "1.6", tracking: "0em" },
+  /**
+   * Chữ đặt lên một tấm artwork co giãn (thẻ Save the Date): tính theo bề
+   * ngang của khung chứa (`@container`), nên luôn đúng tỉ lệ với ảnh nền.
+   */
+  poster: { size: "2.9cqw", line: "1.2", tracking: "0.3em" },
+  posterTitle: { size: "5.3cqw", line: "1", tracking: "0.01em" },
+  posterCaption: { size: "2.5cqw", line: "1", tracking: "0.04em" },
+  /** Một câu nói chen giữa artwork (trang ảnh hồi nhỏ) — vẫn co theo khung. */
+  posterNote: { size: "3.8cqw", line: "1.2", tracking: "0.005em" },
+  /** Nhãn nút nhỏ trên artwork — có sàn để điện thoại hẹp vẫn đọc được. */
+  posterLabel: { size: "max(0.8125rem, 2.6cqw)", line: "1.2", tracking: "0.04em" },
   /** Dòng chữ nhỏ in hoa trên tiêu đề section */
   eyebrow: { size: "0.75rem", line: "1.2", tracking: "0.26em" },
 } as const;
@@ -135,12 +163,17 @@ export const sizes = {
   btn: "14rem",
   containerSite: "72rem",
   containerProse: "40rem",
+  /** Một ô của hoạ tiết bàn cờ ở góc hero poster — theo bề ngang, có trần trên desktop */
+  cell: "min(10.16vw, 5.5rem)",
 } as const;
 
 export const radius = {
   paper: "2px",
   card: "8px",
   btn: "999px",
+  /** Ô ảnh trên một artwork co giãn — theo bề ngang khung chứa */
+  tile: "0.45cqw",
+  tileLg: "0.8cqw",
 } as const;
 
 export const shadow = {

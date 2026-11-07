@@ -61,16 +61,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang={meta.lang}
       className={`${display.variable} ${body.variable} ${script.variable}`}
+      /* Tiện ích trình duyệt (Liner, từ điển…) hay gắn thêm attribute vào
+         <html>/<body> trước khi React chạy — bỏ qua cảnh báo lệch hydration ở
+         đúng hai thẻ này, không ảnh hưởng phần còn lại của cây. */
+      suppressHydrationWarning
     >
       <head>
         {/* Token của content/theme.ts, in ra dưới dạng CSS variable */}
         <style>{themeCssVars()}</style>
         {/* JS tắt thì không ai làm chúng hiện — trả lại opacity ngay */}
         <noscript>
-          <style>{`[data-reveal]{opacity:1 !important}`}</style>
+          <style>{`[data-reveal],[data-flicker]{opacity:1 !important}`}</style>
         </noscript>
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

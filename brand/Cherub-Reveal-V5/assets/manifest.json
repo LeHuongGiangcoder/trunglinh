@@ -1,0 +1,136 @@
+{
+  "version": "5.0",
+  "duration": 9.2,
+  "artboard": [
+    1448,
+    2048
+  ],
+  "fit": "contain",
+  "assets": {
+    "background": "background.webp",
+    "paperLeft": "paper-left-full.webp",
+    "paperRight": "paper-right-full.webp",
+    "cherubLeft": "cherub-left.webp",
+    "cherubRight": "cherub-right.webp",
+    "stamp": "stamp.webp"
+  },
+  "exports": {
+    "paperLeft": "paper-left-full.png",
+    "paperRight": "paper-right-full.png",
+    "cherubLeft": "cherub-left.png",
+    "cherubRight": "cherub-right.png",
+    "stamp": "stamp.png"
+  },
+  "timeline": {
+    "stampFade": [
+      0,
+      1.15
+    ],
+    "leftArrival": [
+      1.12,
+      2.9
+    ],
+    "rightArrival": [
+      1.28,
+      3.06
+    ],
+    "pull": [
+      3.5,
+      8.6
+    ],
+    "heroCopy": [
+      7.9,
+      9.2
+    ]
+  },
+  "paperPlacement": {
+    "left": [
+      0,
+      0,
+      1448,
+      2048
+    ],
+    "right": [
+      0,
+      0,
+      1448,
+      2048
+    ]
+  },
+  "cherub": {
+    "sprite": [
+      800,
+      960
+    ],
+    "displaySize": [
+      800,
+      960
+    ],
+    "leftHand": [
+      645,
+      290
+    ],
+    "rightHand": [
+      140,
+      284
+    ],
+    "leftGrip": [
+      606,
+      926
+    ],
+    "rightGrip": [
+      865,
+      926
+    ],
+    "wingPeriod": 1.6,
+    "renderer": "continuous mesh, one intact texture per cherub, no wing clipping masks"
+  },
+  "pull": {
+    "left": [
+      -1030,
+      -35
+    ],
+    "right": [
+      1030,
+      -35
+    ],
+    "rotationDeg": [
+      -2.2,
+      2.2
+    ],
+    "easing": "easeInOutSine",
+    "sharedParentWithAngel": true
+  },
+  "heroProvided": false,
+  "preview": "Native Canvas rendering of the same controller, not browser recording",
+  "paperSource": "Two independent regenerated complete cards, no seam partition in moving assets",
+  "paperPlacementRects": {
+    "left": [
+      53,
+      490,
+      790,
+      1393
+    ],
+    "right": [
+      475,
+      157,
+      925,
+      1630
+    ]
+  },
+  "paperColor": {
+    "reference": "source/reference-original.webp",
+    "baseIvory": "#f4f0ea",
+    "profile": "paper-color-profile.json",
+    "baked": true
+  },
+  "openingState": "Composed from the same two full paper assets used in the pull, plus independent stamp",
+  "paperInvariant": {
+    "sameSrcFromLoadToFinish": true,
+    "opacity": 1,
+    "scale": 1,
+    "noPaperCrossfade": true,
+    "noClosedCompositeOverlay": true,
+    "firstMotionSeconds": 3.5
+  }
+}

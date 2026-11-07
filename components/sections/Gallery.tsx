@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Caption, SectionHead } from "@/components/ui/Heading";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { Reveal } from "@/components/ui/Reveal";
+import { GalleryMosaic } from "@/components/sections/GalleryMosaic";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { gallery } from "@/content/client";
 
@@ -21,6 +22,11 @@ const NUDGE = 56;
  * thì bỏ qua cú đẩy này, chỉ còn dòng gợi ý.
  */
 export function Gallery() {
+  // Bố cục ghép hình trái tim — xem components/sections/GalleryMosaic.tsx
+  return gallery.layout === "mosaic" ? <GalleryMosaic /> : <GalleryReel />;
+}
+
+function GalleryReel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [moved, setMoved] = useState(false);
 

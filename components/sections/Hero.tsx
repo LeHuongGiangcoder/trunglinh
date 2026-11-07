@@ -1,7 +1,26 @@
+import Image from "next/image";
+
 import { Divider } from "@/components/ui/Divider";
 import { Caption, Eyebrow, Heading, Lead } from "@/components/ui/Heading";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { ceremony, couple, hero, venue } from "@/content/client";
+import { element } from "@/lib/assets";
+
+/*
+  Ô vuông bàn cờ ở hai góc trên của bố cục poster, lấy theo file thiết kế
+  (brand/source/hero1.png). Đơn vị là một ô (`--spacing-cell`); số âm là ô bị
+  mép màn cắt bớt.
+*/
+const CELLS: { side: "left" | "right"; x: number; y: number }[] = [
+  { side: "left", x: 0.5, y: 0 },
+  { side: "left", x: -0.5, y: 1 },
+  { side: "right", x: -0.22, y: -0.4 },
+  { side: "right", x: 0.78, y: 0.6 },
+  { side: "right", x: -0.22, y: 1.6 },
+  { side: "right", x: 0.78, y: 2.6 },
+];
+
+const unit = (n: number) => `calc(var(--spacing-cell) * ${n})`;
 
 /**
  * Trang bìa: tên hai người, ngày giờ, một dòng mời.
@@ -10,6 +29,77 @@ import { ceremony, couple, hero, venue } from "@/content/client";
  * cuộn — hero nằm ngay dưới màn mở thiệp nên sẽ không bao giờ "cuộn tới".
  */
 export function Hero() {
+  return hero.layout === "poster" ? <PosterHero /> : <ClassicHero />;
+}
+
+/**
+ * Ảnh cưới full màn, chữ tiêu đề ở trên, ô vuông nhấp nháy ở hai góc.
+ *
+ * Ảnh là nền của section (`design.hero` trong client.ts), nên nó đã nằm sẵn
+ * dưới màn mở thiệp và lộ ra khi giấy được kéo. Ô vuông (`data-flicker`) và
+ * chữ (`data-hero`) chờ cú mở thiệp rồi mới hiện — xem Motion.tsx.
+ */
+function PosterHero() {
+  const title = element(hero.titleArt);
+
+  return (
+    <SectionWrapper section="hero" flush width="bleed" labelledBy="hero-title" priority>
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        {CELLS.map((cell, i) => (
+          <span
+            key={i}
+            data-flicker
+            className="absolute size-cell bg-tone-fg"
+            style={{ top: unit(cell.y), [cell.side]: unit(cell.x) }}
+          />
+        ))}
+      </div>
+
+      <div className="safe-top relative flex min-h-[100svh] flex-col items-center px-gutter text-center">
+        <h1 id="hero-title" className="flex w-full flex-col items-center gap-tight">
+          {title ? (
+            <Image
+              src={title.src}
+              width={title.width}
+              height={title.height}
+              alt={hero.titleAlt}
+              sizes="(min-width: 40rem) 32rem, 72vw"
+              priority
+              data-reveal
+              data-hero
+              data-reveal-style="wipe"
+              className="wipe-mask h-auto w-[min(72%,32rem)]"
+            />
+          ) : (
+            <span className="font-display text-h1 uppercase">{hero.titleAlt}</span>
+          )}
+
+          <span
+            data-reveal
+            data-hero
+            data-reveal-delay="1100"
+            className="flex items-baseline gap-tight font-display text-h2"
+          >
+            <span>{couple.groom}</span>
+            <span className="font-script text-h2">&amp;</span>
+            <span>{couple.bride}</span>
+          </span>
+        </h1>
+
+        <p
+          data-reveal
+          data-hero
+          data-reveal-delay="1500"
+          className="text-eyebrow uppercase text-tone-fg"
+        >
+          {ceremony.dateShort}
+        </p>
+      </div>
+    </SectionWrapper>
+  );
+}
+
+function ClassicHero() {
   return (
     <SectionWrapper section="hero" flush width="bleed" labelledBy="hero-title">
       <div className="container-site flex min-h-[100svh] flex-col items-center justify-center gap-stack py-section text-center">
