@@ -28,3 +28,12 @@ yarn-debug.log*
 yarn-error.log*
 .eslintcache
 *.tsbuildinfo
+
+# pipeline & local
+_inbox/
+pipeline/reference/
+pipeline/shots/
+brand/*-source/
+Thumbs.db
+desktop.ini
+.claude/settings.local.json
