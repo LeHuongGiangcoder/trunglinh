@@ -26,9 +26,9 @@ export const palette = {
   forest: "#1d3a2b",
   forestDeep: "#132619",
   forestSoft: "#3c6049",
-  /** Chữ trên nền sáng */
-  ink: "#33302a",
-  inkSoft: "#6b6559",
+  /** Chữ trên nền sáng — nâu đậm, không dùng đen */
+  ink: "#4a3325",
+  inkSoft: "#7a6656",
   /** Nhấn: dùng cho eyebrow, gạch chân, viền nút */
   gold: "#b99a5b",
   goldSoft: "#e2d2ae",
@@ -131,10 +131,10 @@ export const typeScale = {
   posterNote: { size: "3.8cqw", line: "1.2", tracking: "0.005em" },
   /** Nhãn nút nhỏ trên artwork — có sàn để điện thoại hẹp vẫn đọc được. */
   posterLabel: { size: "max(0.8125rem, 2.6cqw)", line: "1.2", tracking: "0.04em" },
-  /** Tên viết tay đặt trên artwork (font script) — co theo khung. */
-  posterScript: { size: "3.3cqw", line: "1.2", tracking: "0em" },
-  /** Đoạn trích dẫn vài dòng trên artwork — có sàn để điện thoại hẹp vẫn đọc được. */
-  posterQuote: { size: "max(0.8125rem, 3cqw)", line: "1.5", tracking: "0.005em" },
+  /** Tên viết tay đặt trên artwork (font script) — sàn 20px để không bé hơn chữ thường. */
+  posterScript: { size: "max(1.25rem, 4.2cqw)", line: "1.2", tracking: "0em" },
+  /** Đoạn trích dẫn vài dòng trên artwork — sàn bằng body (16px), không bé hơn chữ đọc. */
+  posterQuote: { size: "max(1rem, 3.4cqw)", line: "1.5", tracking: "0.005em" },
   /** Tên cô dâu chú rể trên trang bìa poster: in hoa, giãn chữ rộng */
   heroName: { size: "clamp(1.75rem, 8.6vw, 3.75rem)", line: "1.12", tracking: "0.16em" },
   /** Dấu "&" Great Vibes giữa hai tên */

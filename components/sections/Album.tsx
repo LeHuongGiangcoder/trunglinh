@@ -58,7 +58,7 @@ const BUTTERFLIES = [
 ] as const;
 
 /** Đoạn trích dẫn dưới tên. */
-const QUOTE = { x: 360, y: 5760, w: 4241 };
+const QUOTE = { x: 250, y: 5730, w: 4461 };
 
 export function Album() {
   const paper = resolveBackground(design.album.background);

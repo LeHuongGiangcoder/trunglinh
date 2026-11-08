@@ -33,8 +33,8 @@ const SLOT: Record<number, Box> = {
 const NOTCH = { x: 0.265, y: 0.195 };
 
 /** Mũi tên và dòng tên giữa chúng (px artboard). */
-const PREV = { x: 1227, y: 5310, w: 472 };
-const NEXT = { x: 3289, y: 5278, w: 453 };
+const PREV = { x: 640, y: 5310, w: 472 };
+const NEXT = { x: 3880, y: 5278, w: 453 };
 const NAMES = { cx: 2494, cy: 5430 };
 
 /** Mọi thẻ dùng chung một `sizes` để mỗi ảnh chỉ tải một lần dù thẻ đổi cỡ. */
