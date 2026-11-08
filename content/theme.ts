@@ -43,6 +43,8 @@ export const palette = {
   cocoa: "#6f4a32",
   /** Mực nâu xám của trang Album (khớp nét "Love" và tim vẽ tay) */
   taupe: "#6e5b47",
+  /** Xanh mực của tên cô dâu chú rể trên trang bìa poster (khớp bản thiết kế hero) */
+  harbor: "#2a5a85",
 } as const;
 
 /**
@@ -102,6 +104,10 @@ export const fonts = {
   display: 'var(--ff-display), Georgia, "Times New Roman", serif',
   body: "var(--ff-body), ui-sans-serif, system-ui, sans-serif",
   script: 'var(--ff-script), "Apple Chancery", cursive',
+  /** Playfair Display — tên cô dâu chú rể và ngày trên trang bìa poster */
+  title: 'var(--ff-title), Georgia, "Times New Roman", serif',
+  /** Great Vibes — dấu "&" giữa hai tên trên trang bìa poster */
+  amp: 'var(--ff-amp), "Apple Chancery", cursive',
 } as const;
 
 /** Thang chữ. Không được dùng size nào ngoài danh sách này. */
@@ -129,6 +135,12 @@ export const typeScale = {
   posterScript: { size: "3.3cqw", line: "1.2", tracking: "0em" },
   /** Đoạn trích dẫn vài dòng trên artwork — có sàn để điện thoại hẹp vẫn đọc được. */
   posterQuote: { size: "max(0.8125rem, 3cqw)", line: "1.5", tracking: "0.005em" },
+  /** Tên cô dâu chú rể trên trang bìa poster: in hoa, giãn chữ rộng */
+  heroName: { size: "clamp(1.75rem, 8.6vw, 3.75rem)", line: "1.12", tracking: "0.16em" },
+  /** Dấu "&" Great Vibes giữa hai tên */
+  heroAmp: { size: "clamp(2.5rem, 11vw, 4.75rem)", line: "1", tracking: "0em" },
+  /** Ngày trên trang bìa poster */
+  heroDate: { size: "clamp(1rem, 4.4vw, 1.625rem)", line: "1.2", tracking: "0.36em" },
   /** Dòng chữ nhỏ in hoa trên tiêu đề section */
   eyebrow: { size: "0.75rem", line: "1.2", tracking: "0.26em" },
 } as const;
@@ -216,6 +228,8 @@ export function themeCssVars(): string {
   push("font-display", fonts.display);
   push("font-body", fonts.body);
   push("font-script", fonts.script);
+  push("font-title", fonts.title);
+  push("font-amp", fonts.amp);
 
   for (const [key, step] of Object.entries(typeScale)) {
     push(`text-${kebab(key)}`, step.size);

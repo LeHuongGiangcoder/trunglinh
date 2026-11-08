@@ -29,6 +29,7 @@
   --color-sky-line: var(--t-color-sky-line);
   --color-cocoa: var(--t-color-cocoa);
   --color-taupe: var(--t-color-taupe);
+  --color-harbor: var(--t-color-harbor);
 
   /* Màu theo tông của section — SectionWrapper đặt data-tone, con tự đổi màu */
   --color-tone-bg: var(--t-section-bg);
@@ -42,6 +43,8 @@
   --font-display: var(--t-font-display);
   --font-body: var(--t-font-body);
   --font-script: var(--t-font-script);
+  --font-title: var(--t-font-title);
+  --font-amp: var(--t-font-amp);
 
   --text-display: var(--t-text-display);
   --text-display--line-height: var(--t-leading-display);
@@ -83,6 +86,15 @@
   --text-poster-quote: var(--t-text-poster-quote);
   --text-poster-quote--line-height: var(--t-leading-poster-quote);
   --text-poster-quote--letter-spacing: var(--t-tracking-poster-quote);
+  --text-hero-name: var(--t-text-hero-name);
+  --text-hero-name--line-height: var(--t-leading-hero-name);
+  --text-hero-name--letter-spacing: var(--t-tracking-hero-name);
+  --text-hero-amp: var(--t-text-hero-amp);
+  --text-hero-amp--line-height: var(--t-leading-hero-amp);
+  --text-hero-amp--letter-spacing: var(--t-tracking-hero-amp);
+  --text-hero-date: var(--t-text-hero-date);
+  --text-hero-date--line-height: var(--t-leading-hero-date);
+  --text-hero-date--letter-spacing: var(--t-tracking-hero-date);
   --text-eyebrow: var(--t-text-eyebrow);
   --text-eyebrow--line-height: var(--t-leading-eyebrow);
   --text-eyebrow--letter-spacing: var(--t-tracking-eyebrow);
@@ -201,6 +213,19 @@ h4 {
 /* ---------------------------------------------------- COMPONENTS */
 
 @layer components {
+  /*
+    Bóng đổ theo viền của một mảnh giấy đã cắt hình (PNG/WebP có alpha).
+    box-shadow chỉ bám khung chữ nhật nên không dùng được; drop-shadow bám đúng
+    đường viền.
+
+    Ánh sáng đến từ trên-trái: bóng lệch xuống-phải, nên chỉ mép phải và mép
+    dưới của mảnh giấy có bóng, mép trên/trái gần như sạch. Lớp rộng cho độ
+    nổi, lớp sát cho mép giấy. Số đo tính theo artboard 1448px nên co theo màn.
+  */
+  .cutout-shadow {
+    filter: drop-shadow(14px 18px 30px rgb(51 48 42 / 0.3)) drop-shadow(3px 4px 6px rgb(51 48 42 / 0.16));
+  }
+
   /*
     Phần tử chờ GSAP làm hiện (components/ui/Motion.tsx).
 

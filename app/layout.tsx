@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Be_Vietnam_Pro, Cormorant_Garamond, Pinyon_Script } from "next/font/google";
+import { Be_Vietnam_Pro, Cormorant_Garamond, Great_Vibes, Pinyon_Script, Playfair_Display } from "next/font/google";
 
 import { meta } from "@/content/client";
 import { palette, themeCssVars } from "@/content/theme";
@@ -34,6 +34,20 @@ const script = Pinyon_Script({
   display: "swap",
 });
 
+const title = Playfair_Display({
+  variable: "--ff-title",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+const amp = Great_Vibes({
+  variable: "--ff-amp",
+  subsets: ["latin", "vietnamese"],
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(meta.siteUrl),
   title: meta.title,
@@ -60,7 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={meta.lang}
-      className={`${display.variable} ${body.variable} ${script.variable}`}
+      className={`${display.variable} ${body.variable} ${script.variable} ${title.variable} ${amp.variable}`}
       /* Tiện ích trình duyệt (Liner, từ điển…) hay gắn thêm attribute vào
          <html>/<body> trước khi React chạy — bỏ qua cảnh báo lệch hydration ở
          đúng hai thẻ này, không ảnh hưởng phần còn lại của cây. */

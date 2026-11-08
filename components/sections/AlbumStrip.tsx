@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 
 import type { Asset } from "@/lib/assets";
 
@@ -64,6 +64,7 @@ export function AlbumStrip({ shots, start, names, prevLabel, nextLabel, prevArt,
   const n = shots.length;
   const [index, setIndex] = useState(start % n);
   const swipe = useRef<{ x: number; y: number } | null>(null);
+  const group = useRef<HTMLDivElement>(null);
 
   const go = (step: number) => setIndex((i) => (i + step + n) % n);
 
@@ -73,6 +74,23 @@ export function AlbumStrip({ shots, start, names, prevLabel, nextLabel, prevArt,
     if (d >= n / 2) d -= n;
     return d;
   };
+
+  /* Cuộn ngang bằng trackpad / chuột: một cú lướt = một nấc, có khoảng nghỉ để quán tính không lật nhiều ảnh. */
+  useEffect(() => {
+    const el = group.current;
+    if (!el) return;
+    let lock = 0;
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaX) < 8 || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      const now = Date.now();
+      if (now < lock) return;
+      lock = now + 450;
+      setIndex((i) => (i + (e.deltaX > 0 ? 1 : -1) + n) % n);
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [n]);
 
   const onPointerDown = (e: PointerEvent) => {
     swipe.current = { x: e.clientX, y: e.clientY };
@@ -92,7 +110,8 @@ export function AlbumStrip({ shots, start, names, prevLabel, nextLabel, prevArt,
         role="group"
         aria-roledescription="carousel"
         aria-label={names}
-        className="absolute inset-0 touch-pan-y"
+        ref={group}
+        className="absolute inset-0 cursor-grab touch-pan-y select-none active:cursor-grabbing"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={() => (swipe.current = null)}
@@ -117,7 +136,7 @@ export function AlbumStrip({ shots, start, names, prevLabel, nextLabel, prevArt,
                   className="absolute inset-x-0"
                   style={{ top: `${(-NOTCH.y / (1 - NOTCH.y)) * 100}%`, height: `${100 / (1 - NOTCH.y)}%` }}
                 >
-                  <Image src={shot.src} alt={d === 0 ? shot.alt : ""} fill sizes={SIZES} className="object-cover" />
+                  <Image src={shot.src} alt={d === 0 ? shot.alt : ""} fill sizes={SIZES} draggable={false} className="object-cover" />
                 </div>
               </div>
               {/* Phần nhô lên bên phải bậc thụt: trọn bề cao */}
@@ -129,7 +148,7 @@ export function AlbumStrip({ shots, start, names, prevLabel, nextLabel, prevArt,
                   className="absolute inset-y-0"
                   style={{ left: `${(-NOTCH.x / (1 - NOTCH.x)) * 100}%`, width: `${100 / (1 - NOTCH.x)}%` }}
                 >
-                  <Image src={shot.src} alt="" fill sizes={SIZES} className="object-cover" />
+                  <Image src={shot.src} alt="" fill sizes={SIZES} draggable={false} className="object-cover" />
                 </div>
               </div>
             </div>

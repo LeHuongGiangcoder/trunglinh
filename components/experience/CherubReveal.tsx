@@ -180,13 +180,6 @@ export function CherubReveal() {
     s.raf = requestAnimationFrame(tick);
   }, [ready, render, finish, startMusic]);
 
-  const skip = useCallback(() => {
-    if (state.current.done) return;
-    startMusic();
-    render(DURATION);
-    finish();
-  }, [render, finish, startMusic]);
-
   /* Đặt thiên thần theo điểm nắm, co artboard theo màn, chờ ảnh decode xong. */
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -298,7 +291,7 @@ export function CherubReveal() {
                   sizes="100vw"
                   priority
                   alt=""
-                  className="absolute inset-0 h-full w-full"
+                  className="cutout-shadow absolute inset-0 h-full w-full"
                 />
               ) : null}
               <div
@@ -346,18 +339,6 @@ export function CherubReveal() {
       >
         {intro.hint}
       </p>
-
-      <button
-        type="button"
-        onClick={skip}
-        className="absolute flex min-h-tap items-center rounded-btn border border-tone-line bg-tone-bg/70 px-stack text-eyebrow uppercase text-tone-fg backdrop-blur-sm"
-        style={{
-          top: "calc(var(--t-space-tight) + env(safe-area-inset-top))",
-          right: "max(var(--t-space-tight), env(safe-area-inset-right))",
-        }}
-      >
-        {intro.skip}
-      </button>
 
       {/* Texture của hai thiên thần cho renderer — không hiển thị trực tiếp */}
       <div aria-hidden className="hidden">

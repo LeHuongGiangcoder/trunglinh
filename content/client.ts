@@ -231,6 +231,8 @@ export const hero = {
   titleAlt: "Our Love Story",
   eyebrow: "Trân trọng kính mời",
   headline: "đến chung vui cùng gia đình chúng tôi",
+  /** Lời mời trên tên cô dâu chú rể (bố cục "poster"). */
+  invite: "Trân trọng kính mời quý khách đến tham dự lễ thành hôn của",
   scrollHint: "Cuộn xuống",
 };
 

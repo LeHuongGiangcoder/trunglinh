@@ -65,8 +65,8 @@ export function LittleChild() {
 
       <div
         data-scene
-        data-scene-start="52% 92%"
-        data-scene-end="72% 48%"
+        data-scene-start="52% 74%"
+        data-scene-end="82% 30%"
         className="@container relative mx-auto aspect-[4961/7016] w-full overflow-hidden sm:max-w-prose sm:rounded-paper sm:shadow-lift"
       >
         {sky ? (

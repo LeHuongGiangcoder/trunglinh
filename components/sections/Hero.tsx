@@ -68,7 +68,7 @@ function PosterHero() {
               data-reveal
               data-hero
               data-reveal-style="wipe"
-              className="wipe-mask h-auto w-[min(72%,32rem)]"
+              className="wipe-mask mt-stack h-auto w-[min(72%,32rem)]"
             />
           ) : (
             <span className="font-display text-h1 uppercase">{hero.titleAlt}</span>
@@ -77,12 +77,24 @@ function PosterHero() {
           <span
             data-reveal
             data-hero
-            data-reveal-delay="1100"
-            className="flex items-baseline gap-tight font-display text-h2"
+            data-reveal-delay="1000"
+            className="mt-block max-w-[18rem] font-title text-h4 text-harbor"
           >
-            <span>{couple.groom}</span>
-            <span className="font-script text-h2">&amp;</span>
-            <span>{couple.bride}</span>
+            {hero.invite}
+          </span>
+
+          <span
+            data-reveal
+            data-hero
+            data-reveal-delay="1100"
+            className="mt-block flex flex-col items-center font-title text-hero-name uppercase text-harbor"
+          >
+            <span>{couple.groomGiven}</span>
+            <span aria-hidden className="font-amp text-hero-amp normal-case">
+              &amp;
+            </span>
+            <span className="sr-only">và</span>
+            <span>{couple.brideGiven}</span>
           </span>
         </h1>
 
@@ -90,9 +102,11 @@ function PosterHero() {
           data-reveal
           data-hero
           data-reveal-delay="1500"
-          className="text-eyebrow uppercase text-tone-fg"
+          className="mt-block flex w-full max-w-[18rem] items-center gap-stack font-title text-hero-date text-harbor"
         >
-          {ceremony.dateShort}
+          <span aria-hidden className="h-px grow bg-harbor" />
+          {ceremony.dateShort.replaceAll(" ", "")}
+          <span aria-hidden className="h-px grow bg-harbor" />
         </p>
       </div>
     </SectionWrapper>
