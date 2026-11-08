@@ -457,7 +457,6 @@ export const honeymoonFund = {
   account: { bank: "BIDV · PGD Lương Ngọc Quyến", number: "3901092775", holder: "DO THUY LINH" },
   copyHint: "Chạm vào số tài khoản để sao chép",
   copiedLabel: "Đã sao chép số tài khoản",
-  caption: "Chân thành cảm ơn quý khách.",
 };
 
 /* ------------------------------------------------------------------- RSVP */

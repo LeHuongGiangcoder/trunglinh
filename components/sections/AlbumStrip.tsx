@@ -5,6 +5,8 @@ import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } fr
 
 import type { Asset } from "@/lib/assets";
 
+import { BOARD_H, BOARD_W } from "@/components/sections/albumBoard";
+
 /*
   Băng ảnh năm thẻ của trang Album — thẻ giữa to nhất, hai bên nhỏ dần, thấp
   dần như brand/gallery 2. Bấm mũi tên (hoặc vuốt ngang) thì cả băng trượt
@@ -12,9 +14,6 @@ import type { Asset } from "@/lib/assets";
 
   Toạ độ là px trên artboard 4961×7016, quy ra % của artboard.
 */
-
-const BOARD_W = 4961;
-const BOARD_H = 7016;
 
 type Box = { x: number; y: number; w: number; h: number };
 

@@ -11,6 +11,8 @@ import { background as resolveBackground, element } from "@/lib/assets";
   thẻ co giãn nguyên khối mà không lệch: trên điện thoại tràn hết bề ngang,
   trên màn rộng thành một tấm thiệp đặt giữa nền giấy.
 
+  Chỉ chữ "Save the Date!" có animation (wipe); các khối còn lại đứng yên.
+
   Thứ tự lớp, dưới lên: nền giấy → hai ảnh → chữ "Save the Date!" →
   thẻ lịch răng cưa (đè lên chân ảnh trái) → huy hiệu thiên nga → dòng ngày.
 */
@@ -50,7 +52,7 @@ export function SaveTheDate() {
           <Image src={paper.src} alt="" fill sizes="(min-width: 40rem) 40rem, 100vw" className="object-cover" />
         ) : null}
 
-        <div data-reveal className="absolute overflow-hidden" style={FRAME.photoLeft}>
+        <div className="absolute overflow-hidden" style={FRAME.photoLeft}>
           <Image
             src={left.src}
             alt={left.alt}
@@ -60,7 +62,7 @@ export function SaveTheDate() {
           />
         </div>
 
-        <div data-reveal data-reveal-delay="180" className="absolute overflow-hidden" style={FRAME.photoRight}>
+        <div className="absolute overflow-hidden" style={FRAME.photoRight}>
           <Image
             src={right.src}
             alt={right.alt}
@@ -78,7 +80,6 @@ export function SaveTheDate() {
             alt=""
             sizes="(min-width: 40rem) 17rem, 42vw"
             data-reveal
-            data-reveal-delay="500"
             data-reveal-style="wipe"
             className="wipe-mask absolute h-auto"
             style={FRAME.script}
@@ -92,8 +93,6 @@ export function SaveTheDate() {
             height={card.height}
             alt="Lịch tháng 12, ngày cưới được đánh dấu — The wedding of Trung & Linh"
             sizes="(min-width: 40rem) 39rem, 97vw"
-            data-reveal
-            data-reveal-delay="300"
             className="absolute h-auto"
             style={FRAME.card}
           />
@@ -106,8 +105,6 @@ export function SaveTheDate() {
             height={seal.height}
             alt=""
             sizes="(min-width: 40rem) 6rem, 15vw"
-            data-reveal
-            data-reveal-delay="650"
             className="absolute h-auto"
             style={FRAME.seal}
           />
@@ -115,9 +112,7 @@ export function SaveTheDate() {
 
         <p
           aria-hidden
-          data-reveal
-          data-reveal-delay="850"
-          className="absolute inset-x-0 -translate-y-1/2 text-center font-body text-poster font-medium text-cocoa"
+          className="absolute inset-x-0 -translate-y-1/2 text-center font-body text-poster font-semibold text-cocoa"
           style={FRAME.date}
         >
           {saveTheDate.date}

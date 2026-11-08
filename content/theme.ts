@@ -124,7 +124,7 @@ export const typeScale = {
    * Chữ đặt lên một tấm artwork co giãn (thẻ Save the Date): tính theo bề
    * ngang của khung chứa (`@container`), nên luôn đúng tỉ lệ với ảnh nền.
    */
-  poster: { size: "2.9cqw", line: "1.2", tracking: "0.3em" },
+  poster: { size: "4.2cqw", line: "1.2", tracking: "0.24em" },
   posterTitle: { size: "5.3cqw", line: "1", tracking: "0.01em" },
   posterCaption: { size: "2.5cqw", line: "1", tracking: "0.04em" },
   /** Một câu nói chen giữa artwork (trang ảnh hồi nhỏ) — vẫn co theo khung. */

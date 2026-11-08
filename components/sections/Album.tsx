@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 
 import { AlbumStrip } from "@/components/sections/AlbumStrip";
+import { BOARD_H, BOARD_W } from "@/components/sections/albumBoard";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { album, couple, design } from "@/content/client";
 import { background as resolveBackground, element } from "@/lib/assets";
@@ -16,8 +17,6 @@ import { background as resolveBackground, element } from "@/lib/assets";
   globals.css), thân lượn quanh chỗ đứng bằng GSAP ([data-flit] trong Motion).
 */
 
-const BOARD_W = 4961;
-const BOARD_H = 7016;
 
 const pctX = (v: number) => `${(v / BOARD_W) * 100}%`;
 const pctY = (v: number) => `${(v / BOARD_H) * 100}%`;
@@ -77,7 +76,7 @@ export function Album() {
       </svg>
 
       {/* overflow-clip, không phải hidden: bướm bay ra mép không được làm khung cuộn ngang */}
-      <div className="@container relative mx-auto aspect-[4961/7016] w-full overflow-clip sm:max-w-prose sm:rounded-paper sm:shadow-lift">
+      <div style={{ aspectRatio: `${BOARD_W} / ${BOARD_H}` }} className="@container relative mx-auto w-full overflow-clip sm:max-w-prose sm:rounded-paper sm:shadow-lift">
         {paper ? (
           <Image src={paper.src} alt="" fill sizes="(min-width: 40rem) 40rem, 100vw" className="object-cover" />
         ) : null}
