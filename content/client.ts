@@ -152,7 +152,7 @@ export const couple = {
   brideGiven: "Thuỳ Linh",
   groomFull: "Họ Tên Đầy Đủ Chú Rể",
   brideFull: "Họ Tên Đầy Đủ Cô Dâu",
-  hashtag: "#TenChuReCuoiTenCoDau",
+  hashtag: "#TrungLinh",
 };
 
 /** Bố mẹ hai bên — hiện ở section Thông tin lễ cưới */
@@ -546,8 +546,8 @@ export const music = {
 
 export const meta = {
   /** Domain thật của site — dùng để dựng link ảnh OG tuyệt đối. */
-  siteUrl: "https://ten-khach.gloweb.site",
-  title: "Tên Chú Rể & Tên Cô Dâu — Thiệp cưới",
+  siteUrl: "https://trunglinh.gloweb.site",
+  title: "Đức Trung & Thuỳ Linh — Thiệp cưới",
   description:
     "Trân trọng kính mời quý khách đến chung vui cùng gia đình chúng tôi ngày 10.12.2026.",
   /** Ảnh hiện khi dán link lên Zalo / Facebook. */
