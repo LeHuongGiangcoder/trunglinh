@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 
 import { useGuest } from "@/components/experience/GuestProvider";
 import { Button } from "@/components/ui/Button";
-import { Caption, Heading, Script, SectionHead } from "@/components/ui/Heading";
+import { Caption, Heading, Lead, SectionHead } from "@/components/ui/Heading";
 import { PaperCard } from "@/components/ui/PaperCard";
 import { Choice, Field, FieldLabel } from "@/components/ui/Field";
 import { Reveal } from "@/components/ui/Reveal";
@@ -123,7 +123,7 @@ export function Rsvp() {
               className="flex flex-col items-center gap-stack text-center"
             >
               <Heading level="h3">{rsvp.successTitle}</Heading>
-              <Script>{rsvp.successNote}</Script>
+              <Lead>{rsvp.successNote}</Lead>
               <Button variant="outline" onClick={() => setStatus("idle")}>
                 Sửa lại câu trả lời
               </Button>

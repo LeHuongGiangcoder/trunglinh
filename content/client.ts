@@ -123,14 +123,20 @@ export const design: Record<SectionId, SectionDesign> = {
   weddingInfo: { anchor: "wedding-info", tone: "dark" },
   agenda: { anchor: "agenda", tone: "light" },
   dresscode: { anchor: "dresscode", tone: "paper" },
-  honeymoonFund: { anchor: "honeymoon-fund", tone: "light", background: "gallery-paper", overlay: 0 },
+  honeymoonFund: {
+    anchor: "honeymoon-fund",
+    tone: "light",
+    background: "/images/honeymoon.jpg",
+    overlay: 0,
+    focus: "50% 70%",
+  },
   rsvp: { anchor: "rsvp", tone: "sky" },
   thankYou: {
     anchor: "thank-you",
     tone: "dark",
-    background: "/images/save-the-date-01.jpg",
+    background: "/images/thank-you.jpg",
     overlay: 0,
-    focus: "60% 100%",
+    focus: "47% 50%",
   },
 };
 
@@ -447,9 +453,11 @@ export const honeymoonFund = {
   eyebrow: "Honeymoon Fund",
   title: "Quỹ trăng mật",
   intro: "Sự hiện diện của quý khách là món quà lớn nhất với chúng mình.",
-  body: "Nếu quý khách muốn gửi thêm một chút yêu thương, chúng mình xin được đón nhận để cùng nhau thực hiện chuyến đi đầu tiên của đời vợ chồng. Quý khách chỉ cần quét mã QR bên dưới.",
-  /** Mã QR chuyển khoản — thay file public/images/fund-qr.jpg. */
-  qr: { src: "/images/fund-qr.jpg", alt: "Mã QR chuyển khoản quỹ trăng mật của cô dâu", width: 1290, height: 1135 },
+  body: "Nếu quý khách muốn gửi thêm một chút yêu thương, chúng mình xin được đón nhận để cùng nhau thực hiện chuyến đi đầu tiên của đời vợ chồng.",
+  /** Tài khoản nhận — số tài khoản chạm vào là chép. */
+  account: { bank: "BIDV · PGD Lương Ngọc Quyến", number: "3901092775", holder: "DO THUY LINH" },
+  copyHint: "Chạm vào số tài khoản để sao chép",
+  copiedLabel: "Đã sao chép số tài khoản",
   caption: "Chân thành cảm ơn quý khách.",
 };
 
@@ -519,7 +527,7 @@ export const thankYou = {
     "Cảm ơn quý khách đã dành thời gian",
     "đồng hành cùng chúng mình trong ngày trọng đại.",
   ],
-  signature: "Tên Chú Rể & Tên Cô Dâu",
+  signature: "Monogram T & L",
 };
 
 /* ------------------------------------------------------------------ NHẠC */

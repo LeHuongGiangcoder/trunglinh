@@ -1,6 +1,6 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { Divider } from "@/components/ui/Divider";
-import { Caption, Eyebrow, Heading, Script, SectionHead } from "@/components/ui/Heading";
+import { Caption, Eyebrow, Heading, SectionHead } from "@/components/ui/Heading";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
@@ -75,7 +75,7 @@ export function WeddingInfo() {
             <Caption>{venue.address}</Caption>
           </div>
 
-          <Script>{venue.note}</Script>
+          <Caption>{venue.note}</Caption>
 
           <div className="flex w-full flex-col items-center gap-stack sm:flex-row sm:justify-center">
             <ButtonLink href={venue.mapUrl} target="_blank" rel="noreferrer noopener">

@@ -39,6 +39,8 @@ export const assets = {
     "heart-doodle-right": { src: "/brand/elements/heart-doodle-right.webp", width: 736, height: 575 },
     "love-script": { src: "/brand/elements/love-script.webp", width: 721, height: 290 },
     "love-story-title": { src: "/brand/elements/love-story-title.webp", width: 1600, height: 619 },
+    "monogram-cream": { src: "/brand/elements/monogram-cream.png", width: 851, height: 756 },
+    "monogram": { src: "/brand/elements/monogram.png", width: 851, height: 756 },
     "rsvp-paper-bottom": { src: "/brand/elements/rsvp-paper-bottom.webp", width: 2480, height: 631 },
     "rsvp-paper-middle": { src: "/brand/elements/rsvp-paper-middle.webp", width: 2480, height: 1613 },
     "rsvp-paper-top": { src: "/brand/elements/rsvp-paper-top.webp", width: 2480, height: 1263 },

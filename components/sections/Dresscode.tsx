@@ -1,4 +1,4 @@
-import { Caption, Heading, SectionHead } from "@/components/ui/Heading";
+import { Body, Caption, SectionHead } from "@/components/ui/Heading";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { dresscode } from "@/content/client";
@@ -17,11 +17,11 @@ export function Dresscode() {
         eyebrow={dresscode.eyebrow}
         title={dresscode.title}
         titleId="dresscode-title"
+        intro={dresscode.headline}
       />
 
-      <Reveal className="flex flex-col items-center gap-stack text-center">
-        <Heading level="h3">{dresscode.headline}</Heading>
-        <Caption className="max-w-prose">{dresscode.note}</Caption>
+      <Reveal className="flex flex-col items-center text-center">
+        <Body>{dresscode.note}</Body>
       </Reveal>
 
       {dresscode.swatches.length > 0 ? (

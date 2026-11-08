@@ -60,10 +60,27 @@ export function Eyebrow({
   );
 }
 
+/**
+ * Bốn bậc chữ của một section, từ lớn tới nhỏ — dùng đúng vai, đừng trộn:
+ *   Heading  tiêu đề            font-display, màu fg
+ *   Lead     câu dẫn dưới tiêu đề   font-display text-h4, màu muted
+ *   Body     đoạn nội dung      text-base, màu fg
+ *   Caption  ghi chú / chú thích    text-small, màu muted
+ */
+
 /** Câu dẫn dưới tiêu đề. */
 export function Lead({ className = "", children, ...rest }: TextProps) {
   return (
-    <p className={`text-lead text-tone-muted ${className}`} {...rest}>
+    <p className={`font-display text-h4 text-pretty text-tone-muted ${className}`} {...rest}>
+      {children}
+    </p>
+  );
+}
+
+/** Đoạn nội dung chính. */
+export function Body({ className = "", children, ...rest }: TextProps) {
+  return (
+    <p className={`max-w-prose text-base text-pretty text-tone-fg ${className}`} {...rest}>
       {children}
     </p>
   );
@@ -72,7 +89,7 @@ export function Lead({ className = "", children, ...rest }: TextProps) {
 /** Chú thích nhỏ: giờ, địa chỉ, ghi chú. */
 export function Caption({ className = "", children, ...rest }: TextProps) {
   return (
-    <p className={`text-small text-tone-muted ${className}`} {...rest}>
+    <p className={`text-small text-pretty text-tone-muted ${className}`} {...rest}>
       {children}
     </p>
   );
