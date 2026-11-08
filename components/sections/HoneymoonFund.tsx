@@ -6,7 +6,7 @@ import { honeymoonFund } from "@/content/client";
 
 /**
  * Quỹ trăng mật: ảnh cặp đôi phủ kín khung hình (`design.honeymoonFund` trong
- * client.ts). Tiêu đề ở khoảng tường trống phía trên; lời ngỏ và tài khoản
+ * client.ts). Tiêu đề và lời ngỏ ở khoảng tường trống phía trên; tài khoản
  * nhận ở chân section — số tài khoản chạm vào là chép.
  */
 export function HoneymoonFund() {
@@ -14,17 +14,18 @@ export function HoneymoonFund() {
 
   return (
     <SectionWrapper section="honeymoonFund" flush width="bleed" labelledBy="honeymoon-fund-title">
-      <div className="safe-top relative flex min-h-[125svh] flex-col items-center gap-block px-gutter py-section text-center">
+      <div className="safe-top relative flex min-h-[125svh] flex-col items-center px-gutter py-section text-center">
         <SectionHead
           eyebrow={honeymoonFund.eyebrow}
           title={honeymoonFund.title}
           titleId="honeymoon-fund-title"
-          intro={honeymoonFund.intro}
         />
 
-        <Reveal delay={120} className="mt-auto flex flex-col items-center gap-block">
+        <Reveal delay={90}>
           <Body>{honeymoonFund.body}</Body>
+        </Reveal>
 
+        <Reveal delay={120} className="mt-auto flex flex-col items-center gap-block">
           <div className="flex flex-col items-center gap-stack">
             <div className="flex flex-col items-center gap-tight">
               <Eyebrow>{account.holder}</Eyebrow>
