@@ -68,7 +68,7 @@ function PosterHero() {
               data-reveal
               data-hero
               data-reveal-style="wipe"
-              className="wipe-mask mt-stack h-auto w-[min(72%,32rem)]"
+              className="wipe-mask h-auto w-[min(72%,32rem)]"
             />
           ) : (
             <span className="font-display text-h1 uppercase">{hero.titleAlt}</span>
@@ -78,7 +78,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="1000"
-            className="mt-block max-w-[18rem] font-title text-h4 text-harbor"
+            className="max-w-[18rem] font-title text-h4 text-harbor"
           >
             {hero.invite}
           </span>
@@ -87,7 +87,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="1100"
-            className="mt-block flex flex-col items-center font-title text-hero-name uppercase text-harbor"
+            className="mt-stack flex flex-col items-center font-title text-hero-name uppercase text-harbor"
           >
             <span>{couple.groomGiven}</span>
             <span aria-hidden className="font-amp text-hero-amp normal-case">
@@ -102,7 +102,7 @@ function PosterHero() {
           data-reveal
           data-hero
           data-reveal-delay="1500"
-          className="mt-block flex w-full max-w-[18rem] items-center gap-stack font-title text-hero-date text-harbor"
+          className="mt-stack flex w-full max-w-[18rem] items-center gap-stack font-title text-hero-date text-harbor"
         >
           <span aria-hidden className="h-px grow bg-harbor" />
           {ceremony.dateShort.replaceAll(" ", "")}
