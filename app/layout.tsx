@@ -56,9 +56,21 @@ export const metadata: Metadata = {
     title: meta.title,
     description: meta.description,
     locale: meta.locale,
-    images: [{ url: meta.ogImage }],
+    images: [
+      {
+        url: meta.ogImage,
+        width: 1200,
+        height: 630,
+        alt: meta.title,
+      },
+    ],
   },
-  twitter: { card: "summary_large_image", images: [meta.ogImage] },
+  twitter: {
+    card: "summary_large_image",
+    title: meta.title,
+    description: meta.description,
+    images: [meta.ogImage],
+  },
 };
 
 export const viewport: Viewport = {

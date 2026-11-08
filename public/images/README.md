@@ -6,7 +6,8 @@ khách mới chỉ cần ghi đè file, không phải sửa code:
 | File | Dùng ở | Tỉ lệ nên dùng |
 |---|---|---|
 | `intro.jpg` | nền màn mở thiệp | dọc, 3:4 |
-| `hero.jpg` | nền trang bìa | dọc, 4:5 — cũng là ảnh OG khi dán link |
+| `hero.jpg` | nền trang bìa | dọc, 4:5 |
+| `og.jpg` | ảnh preview khi dán link lên Zalo / Facebook | ngang, 1200×630 (1.91:1) |
 | `couple-01…04.jpg` | bốn chương Love Story | dọc, 3:4 |
 | `couple-05.jpg` | Thông tin lễ cưới | dọc, 4:5 |
 | `couple-06.jpg` | Lời cảm ơn | dọc, 4:5 |
