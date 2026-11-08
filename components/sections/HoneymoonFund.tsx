@@ -7,7 +7,7 @@ import { honeymoonFund } from "@/content/client";
 /**
  * Quỹ trăng mật: ảnh cặp đôi phủ kín khung hình (`design.honeymoonFund` trong
  * client.ts). Tiêu đề và lời ngỏ ở khoảng tường trống phía trên; tài khoản
- * nhận gọn hai dòng ở chân section — số tài khoản chạm vào là chép.
+ * nhận gọn hai dòng liền dưới lời ngỏ — số tài khoản chạm vào là chép.
  */
 export function HoneymoonFund() {
   const { account } = honeymoonFund;
@@ -25,7 +25,7 @@ export function HoneymoonFund() {
           <Body>{honeymoonFund.body}</Body>
         </Reveal>
 
-        <Reveal delay={120} className="mt-auto flex flex-col items-center gap-tight">
+        <Reveal delay={120} className="mt-tight flex flex-col items-center gap-tight">
           <p className="text-balance font-display text-small text-tone-fg">
             <span className="text-tone-accent">{account.holder}</span> · {account.bank}
           </p>

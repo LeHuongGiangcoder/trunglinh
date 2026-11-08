@@ -455,7 +455,7 @@ export const honeymoonFund = {
   body: "Nếu quý khách muốn gửi thêm một chút yêu thương, chúng mình xin được đón nhận để cùng nhau thực hiện chuyến đi đầu tiên của đời vợ chồng.",
   /** Tài khoản nhận — số tài khoản chạm vào là chép. */
   account: { bank: "BIDV · PGD Lương Ngọc Quyến", number: "3901092775", holder: "DO THUY LINH" },
-  copyHint: "Chạm vào số tài khoản để sao chép",
+  copyHint: "Chạm để sao chép",
   copiedLabel: "Đã sao chép số tài khoản",
 };
 

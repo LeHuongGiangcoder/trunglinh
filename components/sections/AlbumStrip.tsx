@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 
-import type { Asset } from "@/lib/assets";
-
 import { BOARD_H, BOARD_W } from "@/components/sections/albumBoard";
+import type { Asset } from "@/lib/assets";
 
 /*
   Băng ảnh năm thẻ của trang Album — thẻ giữa to nhất, hai bên nhỏ dần, thấp

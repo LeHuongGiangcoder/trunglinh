@@ -17,7 +17,6 @@ import { background as resolveBackground, element } from "@/lib/assets";
   globals.css), thân lượn quanh chỗ đứng bằng GSAP ([data-flit] trong Motion).
 */
 
-
 const pctX = (v: number) => `${(v / BOARD_W) * 100}%`;
 const pctY = (v: number) => `${(v / BOARD_H) * 100}%`;
 const box = (x: number, y: number, w: number, h?: number): CSSProperties => ({
