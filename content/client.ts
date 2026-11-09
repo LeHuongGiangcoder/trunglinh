@@ -123,13 +123,7 @@ export const design: Record<SectionId, SectionDesign> = {
   weddingInfo: { anchor: "wedding-info", tone: "dark" },
   agenda: { anchor: "agenda", tone: "light" },
   dresscode: { anchor: "dresscode", tone: "paper" },
-  honeymoonFund: {
-    anchor: "honeymoon-fund",
-    tone: "light",
-    background: "/images/honeymoon.jpg",
-    overlay: 0,
-    focus: "50% 70%",
-  },
+  honeymoonFund: { anchor: "honeymoon-fund", tone: "light", background: "gallery-paper", overlay: 0 },
   rsvp: { anchor: "rsvp", tone: "sky" },
   thankYou: {
     anchor: "thank-you",
@@ -367,12 +361,12 @@ export const gallery = {
    * Bố cục album:
    *   "reel"   — dải ảnh kéo ngang (mặc định của glow-base), đọc `shots`
    *   "mosaic" — theo brand/gallery/layout.png: một ảnh cắt thành các ô xếp
-   *              hình trái tim, hai ô chi tiết nghiêng, một ảnh viền trắng
+   *              hình trái tim, hai mảnh ghép rời để khách kéo vào, một ảnh viền trắng
    */
   layout: "mosaic" as "reel" | "mosaic",
   /**
    * Dữ liệu cho bố cục "mosaic". Mọi toạ độ ghép đã đo khớp với ảnh dưới —
-   * đổi ảnh thì phải đo lại `mosaic` và `details`.
+   * đổi ảnh thì phải đo lại `place`.
    */
   mosaic: {
     src: "/images/gallery-mosaic.jpg",
@@ -380,13 +374,12 @@ export const gallery = {
     /** Ảnh đặt trên artboard 4961×7016: góc trái-trên (x, y) và bề rộng, đơn vị px artboard. */
     place: { x: -156, y: -340, width: 4600 },
     /**
-     * Hai ô chi tiết, cắt từ cùng ảnh: tâm (cx, cy) và cạnh ô (side), tính
-     * theo tỉ lệ bề ngang/bề cao của ảnh gốc.
+     * Hai mảnh ghép rời — chính là hai ô còn trống của trái tim. Khách kéo
+     * vào đúng chỗ thì các ô nhấp nháy bật sáng.
      */
-    details: [
-      { cx: 0.3974, cy: 0.4437, side: 0.1725, alt: "Chiếc nơ của chú rể" },
-      { cx: 0.7399, cy: 0.4422, side: 0.1667, alt: "Tấm voan của cô dâu" },
-    ],
+    pieces: [{ alt: "Mảnh ghép chiếc nơ của chú rể" }, { alt: "Mảnh ghép tấm voan của cô dâu" }],
+    puzzleHint: "Kéo hai mảnh ghép vào trái tim",
+    puzzleDone: "Trọn vẹn rồi ♥",
   },
   eyebrow: "Album",
   title: "Khoảnh khắc của chúng mình",
@@ -452,11 +445,9 @@ export const dresscode = {
 export const honeymoonFund = {
   eyebrow: "Honeymoon Fund",
   title: "Quỹ trăng mật",
-  body: "Nếu quý khách muốn gửi thêm một chút yêu thương, chúng mình xin được đón nhận để cùng nhau thực hiện chuyến đi đầu tiên của đời vợ chồng.",
-  /** Tài khoản nhận — số tài khoản chạm vào là chép. */
-  account: { bank: "BIDV · PGD Lương Ngọc Quyến", number: "3901092775", holder: "DO THUY LINH" },
-  copyHint: "Chạm để sao chép",
-  copiedLabel: "Đã sao chép số tài khoản",
+  body: "Nếu quý khách muốn gửi thêm một chút yêu thương, chúng mình xin được đón nhận để cùng nhau thực hiện chuyến đi đầu tiên của đời vợ chồng. Quý khách chỉ cần quét mã QR bên dưới.",
+  /** Mã QR chuyển khoản — thay file public/images/fund-qr.jpg. */
+  qr: { src: "/images/fund-qr.jpg", alt: "Mã QR chuyển khoản quỹ trăng mật của cô dâu", width: 1290, height: 1135 },
 };
 
 /* ------------------------------------------------------------------- RSVP */

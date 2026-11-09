@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
+import { MosaicPuzzle, type PuzzlePiece } from "@/components/sections/MosaicPuzzle";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { ceremony, couple, design, gallery } from "@/content/client";
 import { background as resolveBackground, element } from "@/lib/assets";
@@ -28,11 +29,20 @@ const COLUMNS: { x: number; rows: number[] }[] = [
   { x: 3652, rows: [2028, 2816] },
 ];
 
-/** Hai ô chi tiết nghiêng (tâm + cạnh + góc) và khung ảnh viền trắng. */
-const DETAILS = [
-  { cx: 1204, cy: 5505, side: 790, rotate: -4.6 },
-  { cx: 2350, cy: 5496, side: 790, rotate: 4.6 },
+/**
+  Hai mảnh ghép: ô trống trong trái tim (`slot`, góc trái-trên — chính là khe
+  giữa hai hàng của cột 2 và cột 4) và chỗ mảnh nằm nghiêng lúc đầu (tâm + góc).
+*/
+const PIECES = [
+  { slot: { x: 1288, y: 2332 }, home: { cx: 1204, cy: 5505 }, rotate: -4.6 },
+  { slot: { x: 2864, y: 2332 }, home: { cx: 2350, cy: 5496 }, rotate: 4.6 },
 ];
+/** Dòng gợi ý dưới hai mảnh ghép. */
+const HINT = { x: 420, y: 6060, w: 2720 };
+/** Ô trái tim mang nhóm này — nhấp nháy khi ghép xong (xem Motion.tsx). */
+const HEART = "heart";
+
+/** Khung ảnh viền trắng góc dưới phải. */
 const FRAME = { x: 3252, y: 4553, w: 1299, h: 1908, border: 40 };
 
 /** Nét vẽ tay tách từ layout (brand/elements). */
@@ -71,16 +81,13 @@ export function GalleryMosaic() {
     height: `${(photoH / TILE) * 100}%`,
   });
 
-  /** Ô chi tiết: phóng ảnh sao cho đúng vùng (cx, cy, side) lấp kín ô. */
-  const detailFor = (d: (typeof mosaic.details)[number]): CSSProperties => {
-    const sideH = d.side / 1.5; // cạnh ô tính theo bề cao ảnh 2:3
-    return {
-      width: `${100 / d.side}%`,
-      height: `${100 / sideH}%`,
-      left: `${(-(d.cx - d.side / 2) / d.side) * 100}%`,
-      top: `${(-(d.cy - sideH / 2) / sideH) * 100}%`,
-    };
-  };
+  const pieces: PuzzlePiece[] = PIECES.map((p, i) => ({
+    slot: box(p.slot.x, p.slot.y, TILE, TILE),
+    home: box(p.home.cx - TILE / 2, p.home.cy - TILE / 2, TILE, TILE),
+    photo: windowFor(p.slot.x, p.slot.y),
+    rotate: p.rotate,
+    alt: mosaic.pieces[i].alt,
+  }));
 
   return (
     <SectionWrapper section="gallery" flush width="bleed" labelledBy="gallery-title" className="sm:py-section">
@@ -126,6 +133,7 @@ export function GalleryMosaic() {
                 aria-hidden
                 data-reveal
                 data-reveal-delay={String(Math.abs(c - 2) * 120 + r * 90)}
+                data-flicker-group={HEART}
                 className="absolute overflow-hidden rounded-tile"
                 style={box(col.x, y, TILE, TILE)}
               >
@@ -136,6 +144,17 @@ export function GalleryMosaic() {
             )),
           )}
         </div>
+
+        {/* Hai mảnh ghép rời — kéo vào hai ô trống của trái tim */}
+        <MosaicPuzzle
+          pieces={pieces}
+          src={mosaic.src}
+          sizes={PHOTO_SIZES}
+          group={HEART}
+          hint={mosaic.puzzleHint}
+          done={mosaic.puzzleDone}
+          hintAt={box(HINT.x, HINT.y, HINT.w)}
+        />
 
         {INK.map((ink) => {
           const art = element(ink.name);
@@ -151,37 +170,11 @@ export function GalleryMosaic() {
               data-reveal
               data-reveal-delay={String(ink.delay)}
               data-reveal-style={ink.wipe ? "wipe" : undefined}
-              className="wipe-mask absolute h-auto"
+              className="wipe-mask pointer-events-none absolute h-auto"
               style={box(ink.x, ink.y, ink.w)}
             />
           );
         })}
-
-        {/* Hai ô chi tiết nghiêng */}
-        {DETAILS.map((d, i) => (
-          <div
-            key={i}
-            data-reveal
-            data-reveal-delay={String(200 + i * 160)}
-            className="absolute"
-            style={box(d.cx - d.side / 2, d.cy - d.side / 2, d.side, d.side)}
-          >
-            <div
-              className="relative size-full overflow-hidden rounded-tile"
-              style={{ transform: `rotate(${d.rotate}deg)` }}
-            >
-              <div className="absolute" style={detailFor(mosaic.details[i])}>
-                <Image
-                  src={mosaic.src}
-                  alt={mosaic.details[i].alt}
-                  fill
-                  sizes={PHOTO_SIZES}
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        ))}
 
         {/* Ảnh viền trắng góc dưới phải */}
         <div

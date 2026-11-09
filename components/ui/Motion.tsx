@@ -12,6 +12,12 @@ gsap.registerPlugin(ScrollTrigger);
 export const OPEN_EVENT = "glow:open";
 
 /**
+ * Bật nhấp nháy cho một nhóm ô: `detail` là giá trị `data-flicker-group`.
+ * Section client (vd. mảnh ghép trái tim) bắn ra, Motion lo phần chuyển động.
+ */
+export const FLICKER_EVENT = "glow:flicker";
+
+/**
  * Toàn bộ chuyển động của trang, gom vào một chỗ:
  *
  *   [data-reveal]        hiện dần khi cuộn tới (một batch cho cả trang)
@@ -20,6 +26,7 @@ export const OPEN_EVENT = "glow:open";
  *   data-reveal-style="wipe"   (cùng data-reveal) hiện bằng vệt mềm trái → phải, cần .wipe-mask
  *   data-reveal-delay="ms"     trễ, cho cả cuộn tới lẫn cú mở thiệp
  *   [data-flicker]       nhấp nháy hiện lên khi thiệp mở, rồi thỉnh thoảng chớp lại
+ *   [data-flicker-group="g"]  nhấp nháy bật sáng một lần khi có FLICKER_EVENT mang "g"
  *   [data-spin="N"]      xoay tròn mãi, N giây một vòng (đĩa than)
  *   [data-flit="N"]      lượn quanh chỗ đứng, xa nhất N% kích thước của chính nó (bướm)
  *   [data-scene]         một cảnh chạy theo thanh cuộn (scrub), từ "start" tới "end":
@@ -60,6 +67,12 @@ export function Motion() {
           clearProps: "filter",
         },
       );
+
+    /* Nhịp chớp "bật đèn" dùng chung cho ô hero và ô của FLICKER_EVENT. */
+    const flickerOn = (node: HTMLElement, delay: number) =>
+      gsap
+        .timeline({ delay })
+        .to(node, { keyframes: { opacity: [0, 1, 0.15, 1, 0.45, 1] }, duration: 0.9, ease: "none" });
 
     const ctx = gsap.context(() => {
       ScrollTrigger.batch("[data-reveal]:not([data-hero])", {
@@ -185,27 +198,34 @@ export function Motion() {
         /* Ô vuông: chớp vài nhịp rồi đứng yên ở opacity 1, so le ngẫu nhiên.
            Sau đó mỗi ô thỉnh thoảng chớp lại một nhịp ngắn cho trang có hơi thở. */
         gsap.utils.toArray<HTMLElement>("[data-flicker]").forEach((node) => {
-          const delay = gsap.utils.random(0, 0.9);
-          gsap
-            .timeline({ delay })
-            .to(node, { keyframes: { opacity: [0, 1, 0.15, 1, 0.45, 1] }, duration: 0.9, ease: "none" })
-            .to(node, {
-              keyframes: { opacity: [1, 0.2, 1] },
-              duration: 0.45,
-              ease: "none",
-              repeat: -1,
-              repeatDelay: gsap.utils.random(3.5, 7),
-              delay: gsap.utils.random(1.5, 4),
-            });
+          flickerOn(node, gsap.utils.random(0, 0.9)).to(node, {
+            keyframes: { opacity: [1, 0.2, 1] },
+            duration: 0.45,
+            ease: "none",
+            repeat: -1,
+            repeatDelay: gsap.utils.random(3.5, 7),
+            delay: gsap.utils.random(1.5, 4),
+          });
         });
       });
       ScrollTrigger.refresh();
     };
 
+    const onFlicker = (event: Event) => {
+      const group = (event as CustomEvent<string>).detail;
+      ctx.add(() => {
+        for (const node of gsap.utils.toArray<HTMLElement>(`[data-flicker-group="${group}"]`)) {
+          flickerOn(node, gsap.utils.random(0, 0.9));
+        }
+      });
+    };
+
     window.addEventListener(OPEN_EVENT, onOpen);
+    window.addEventListener(FLICKER_EVENT, onFlicker);
 
     return () => {
       window.removeEventListener(OPEN_EVENT, onOpen);
+      window.removeEventListener(FLICKER_EVENT, onFlicker);
       ctx.revert();
     };
   }, []);

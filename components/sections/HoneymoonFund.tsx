@@ -1,42 +1,32 @@
-import { Body, SectionHead } from "@/components/ui/Heading";
-import { CopyText } from "@/components/ui/CopyText";
+import { SectionHead } from "@/components/ui/Heading";
+import { ImageFrame } from "@/components/ui/ImageFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { honeymoonFund } from "@/content/client";
 
-/**
- * Quỹ trăng mật: ảnh cặp đôi phủ kín khung hình (`design.honeymoonFund` trong
- * client.ts). Tiêu đề và lời ngỏ ở khoảng tường trống phía trên; tài khoản
- * nhận gọn hai dòng liền dưới lời ngỏ — số tài khoản chạm vào là chép.
- */
+/** Quỹ trăng mật: lời ngỏ ngắn và mã QR đặt trong khung ảnh chung của site. */
 export function HoneymoonFund() {
-  const { account } = honeymoonFund;
+  const { qr } = honeymoonFund;
 
   return (
-    <SectionWrapper section="honeymoonFund" flush width="bleed" labelledBy="honeymoon-fund-title">
-      <div className="safe-top relative flex min-h-[125svh] flex-col items-center px-gutter py-section text-center">
-        <SectionHead
-          eyebrow={honeymoonFund.eyebrow}
-          title={honeymoonFund.title}
-          titleId="honeymoon-fund-title"
+    <SectionWrapper section="honeymoonFund" width="prose" labelledBy="honeymoon-fund-title">
+      <SectionHead
+        eyebrow={honeymoonFund.eyebrow}
+        title={honeymoonFund.title}
+        titleId="honeymoon-fund-title"
+      />
+
+      <Reveal delay={90} className="flex flex-col items-center gap-block text-center">
+        <p className="max-w-prose text-base text-tone-fg">{honeymoonFund.body}</p>
+
+        <ImageFrame
+          src={qr.src}
+          alt={qr.alt}
+          ratio={`${qr.width} / ${qr.height}`}
+          sizes="(max-width: 48rem) 80vw, 24rem"
+          className="w-[80%] max-w-[24rem]"
         />
-
-        <Reveal delay={90}>
-          <Body>{honeymoonFund.body}</Body>
-        </Reveal>
-
-        <Reveal delay={120} className="mt-tight flex flex-col items-center gap-tight">
-          <p className="text-balance font-display text-small text-tone-fg">
-            <span className="text-tone-accent">{account.holder}</span> · {account.bank}
-          </p>
-          <CopyText
-            value={account.number}
-            hint={honeymoonFund.copyHint}
-            copiedLabel={honeymoonFund.copiedLabel}
-            className="font-display text-h3"
-          />
-        </Reveal>
-      </div>
+      </Reveal>
     </SectionWrapper>
   );
 }
