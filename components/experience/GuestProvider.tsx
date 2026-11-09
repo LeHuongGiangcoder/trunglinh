@@ -47,7 +47,6 @@ export function GuestProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!active || !slug) return;
-    if (slug === "__mock") { setTimeout(() => setGuest({ slug, name: "Alex" }), 0); return; } // TEMP-MOCK
 
     // Khách có thể đóng tab giữa chừng — cờ này chặn setState sau khi gỡ.
     let alive = true;
