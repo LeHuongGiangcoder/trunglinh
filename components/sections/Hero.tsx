@@ -80,7 +80,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="850"
-            className="mt-tight flex flex-col items-center text-harbor empty:hidden"
+            className="mt-tight -mb-tight flex flex-col items-center gap-tight text-harbor empty:hidden"
           >
             <HeroGuest />
           </span>
@@ -89,7 +89,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="1050"
-            className="max-w-[18rem] font-title text-h4 text-harbor"
+            className="max-w-[18rem] font-title text-base text-harbor"
           >
             {hero.invite}
           </span>

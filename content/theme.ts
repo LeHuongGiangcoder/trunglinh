@@ -136,11 +136,11 @@ export const typeScale = {
   /** Đoạn trích dẫn vài dòng trên artwork — sàn bằng body (16px), không bé hơn chữ đọc. */
   posterQuote: { size: "max(1rem, 3.4cqw)", line: "1.5", tracking: "0.005em" },
   /** Tên cô dâu chú rể trên trang bìa poster: in hoa, giãn chữ rộng */
-  heroName: { size: "clamp(1.75rem, 8.6vw, 3.75rem)", line: "1.12", tracking: "0.16em" },
+  heroName: { size: "clamp(1.5rem, 7.4vw, 3.25rem)", line: "1.12", tracking: "0.16em" },
   /** Dấu "&" Great Vibes giữa hai tên */
-  heroAmp: { size: "clamp(2.5rem, 11vw, 4.75rem)", line: "1", tracking: "0em" },
+  heroAmp: { size: "clamp(2.125rem, 9.4vw, 4rem)", line: "1", tracking: "0em" },
   /** Tên khách mời dưới dòng "Thân gửi" trên trang bìa poster — nhỏ, không tranh điểm nhìn với tiêu đề */
-  heroGuest: { size: "clamp(1.1875rem, 5vw, 1.75rem)", line: "1.3", tracking: "0.02em" },
+  heroGuest: { size: "clamp(1.1875rem, 5vw, 1.75rem)", line: "1.1", tracking: "0.02em" },
   /** Ngày trên trang bìa poster */
   heroDate: { size: "clamp(1rem, 4.4vw, 1.625rem)", line: "1.2", tracking: "0.36em" },
   /** Dòng chữ nhỏ in hoa trên tiêu đề section */
