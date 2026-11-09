@@ -80,7 +80,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="850"
-            className="mt-tight -mb-tight flex flex-col items-center gap-tight text-harbor empty:hidden"
+            className="mt-tight flex flex-col items-center gap-tight text-harbor empty:hidden"
           >
             <HeroGuest />
           </span>
