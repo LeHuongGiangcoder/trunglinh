@@ -161,11 +161,10 @@ export function CherubReveal() {
     // Nhạc phải gọi ngay trong cú chạm, trình duyệt điện thoại mới cho phát.
     startMusic();
     setStarted(true);
-    if (reduced.current) {
-      render(DURATION);
-      finish();
-      return;
-    }
+    /* Không bỏ qua hoạt cảnh khi máy bật "Giảm chuyển động": nhiều iPhone bật
+       sẵn mục này (Trợ năng, hoặc bị gợi ý lúc thiết lập máy), và màn mở thiệp
+       là phần chính của thiệp chứ không phải trang trí. Thay vào đó cánh thiên
+       thần đứng yên (xem mesh.draw trong render), chỉ còn giấy được kéo ra. */
     s.running = true;
     s.last = 0;
     const tick = (now: number) => {
