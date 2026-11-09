@@ -80,7 +80,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="850"
-            className="mt-tight flex flex-col items-center gap-tight text-harbor empty:hidden"
+            className="mt-tight flex flex-col items-center gap-tight text-harbor empty:hidden squat:mt-0"
           >
             <HeroGuest />
           </span>
@@ -89,7 +89,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="1050"
-            className="max-w-[18rem] font-title text-base text-harbor"
+            className="max-w-[18rem] font-title text-base text-harbor squat:text-small"
           >
             {hero.invite}
           </span>
@@ -113,7 +113,7 @@ function PosterHero() {
           data-reveal
           data-hero
           data-reveal-delay="1550"
-          className="mt-stack flex w-full max-w-[18rem] items-center gap-stack font-title text-hero-date text-harbor"
+          className="mt-stack flex w-full max-w-[18rem] items-center gap-stack font-title text-hero-date squat:mt-tight text-harbor"
         >
           <span aria-hidden className="h-px grow bg-harbor" />
           {ceremony.dateShort.replaceAll(" ", "")}

@@ -2,6 +2,9 @@
 
 /* Máy nằm ngang: chiều cao là trục hiếm, không phải chiều rộng. Dùng `short:` */
 @custom-variant short (@media (max-height: 32rem));
+/* Điện thoại đứng nhưng màn thấp (iPhone SE, Android 16:9): ảnh nền cover đẩy
+   nội dung ảnh lên, nên chữ phía trên phải gọn lại. Dùng `squat:` */
+@custom-variant squat (@media (max-height: 44rem));
 
 /* ============================================================
    GLOW BASE — cầu nối giữa content/theme.ts và Tailwind.

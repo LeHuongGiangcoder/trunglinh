@@ -16,7 +16,7 @@ export function HeroGuest() {
 
   return (
     <>
-      <span className="font-title text-base italic">{hero.greeting}</span>
+      <span className="font-title text-base italic squat:text-small">{hero.greeting}</span>
       <span className={`max-w-[20rem] font-title text-hero-guest text-balance ${guest ? "" : "invisible"}`}>
         {guest?.name ?? " "}
       </span>
