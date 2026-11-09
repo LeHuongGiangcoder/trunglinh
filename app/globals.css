@@ -92,6 +92,9 @@
   --text-hero-amp: var(--t-text-hero-amp);
   --text-hero-amp--line-height: var(--t-leading-hero-amp);
   --text-hero-amp--letter-spacing: var(--t-tracking-hero-amp);
+  --text-hero-guest: var(--t-text-hero-guest);
+  --text-hero-guest--line-height: var(--t-leading-hero-guest);
+  --text-hero-guest--letter-spacing: var(--t-tracking-hero-guest);
   --text-hero-date: var(--t-text-hero-date);
   --text-hero-date--line-height: var(--t-leading-hero-date);
   --text-hero-date--letter-spacing: var(--t-tracking-hero-date);

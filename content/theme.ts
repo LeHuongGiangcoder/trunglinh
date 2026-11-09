@@ -139,6 +139,8 @@ export const typeScale = {
   heroName: { size: "clamp(1.75rem, 8.6vw, 3.75rem)", line: "1.12", tracking: "0.16em" },
   /** Dấu "&" Great Vibes giữa hai tên */
   heroAmp: { size: "clamp(2.5rem, 11vw, 4.75rem)", line: "1", tracking: "0em" },
+  /** Tên khách mời (font script) dưới dòng "Thân gửi" trên trang bìa poster */
+  heroGuest: { size: "clamp(1.625rem, 7.6vw, 3.25rem)", line: "1.1", tracking: "0em" },
   /** Ngày trên trang bìa poster */
   heroDate: { size: "clamp(1rem, 4.4vw, 1.625rem)", line: "1.2", tracking: "0.36em" },
   /** Dòng chữ nhỏ in hoa trên tiêu đề section */

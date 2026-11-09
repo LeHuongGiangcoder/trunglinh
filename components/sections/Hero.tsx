@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { HeroGuest } from "@/components/sections/HeroGuest";
 import { Divider } from "@/components/ui/Divider";
 import { Caption, Eyebrow, Heading, Lead } from "@/components/ui/Heading";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
@@ -74,10 +75,20 @@ function PosterHero() {
             <span className="font-display text-h1 uppercase">{hero.titleAlt}</span>
           )}
 
+          {/* "Thân gửi" + tên khách — rỗng (và ẩn) khi khách không vào bằng link riêng */}
           <span
             data-reveal
             data-hero
-            data-reveal-delay="1000"
+            data-reveal-delay="850"
+            className="mt-tight flex flex-col items-center text-harbor empty:hidden"
+          >
+            <HeroGuest />
+          </span>
+
+          <span
+            data-reveal
+            data-hero
+            data-reveal-delay="1050"
             className="max-w-[18rem] font-title text-h4 text-harbor"
           >
             {hero.invite}
@@ -86,7 +97,7 @@ function PosterHero() {
           <span
             data-reveal
             data-hero
-            data-reveal-delay="1100"
+            data-reveal-delay="1200"
             className="mt-stack flex flex-col items-center font-title text-hero-name uppercase text-harbor"
           >
             <span>{couple.groomGiven}</span>
@@ -101,7 +112,7 @@ function PosterHero() {
         <p
           data-reveal
           data-hero
-          data-reveal-delay="1500"
+          data-reveal-delay="1550"
           className="mt-stack flex w-full max-w-[18rem] items-center gap-stack font-title text-hero-date text-harbor"
         >
           <span aria-hidden className="h-px grow bg-harbor" />

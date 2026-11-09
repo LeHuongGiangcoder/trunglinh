@@ -231,6 +231,12 @@ export const hero = {
   titleAlt: "Our Love Story",
   eyebrow: "Trân trọng kính mời",
   headline: "đến chung vui cùng gia đình chúng tôi",
+  /**
+   * Dòng gọi tên khách trên lời mời (bố cục "poster"). Chỉ hiện khi RSVP chạy
+   * chế độ personalized và khách vào bằng link riêng `?to=<slug>` — tên lấy
+   * từ Sheet RSVP qua Glow RSVP Hub.
+   */
+  greeting: "Thân gửi",
   /** Lời mời trên tên cô dâu chú rể (bố cục "poster"). */
   invite: "Trân trọng kính mời quý khách đến tham dự lễ thành hôn của",
   scrollHint: "Cuộn xuống",
