@@ -135,14 +135,19 @@ export const typeScale = {
   posterScript: { size: "max(1.25rem, 4.2cqw)", line: "1.2", tracking: "0em" },
   /** Đoạn trích dẫn vài dòng trên artwork — sàn bằng body (16px), không bé hơn chữ đọc. */
   posterQuote: { size: "max(1rem, 3.4cqw)", line: "1.5", tracking: "0.005em" },
+  /*
+    Chữ trang bìa poster co theo cả bề ngang lẫn chiều cao (min(vw, svh)): ảnh
+    nền là cover nên trên máy màn thấp (iPhone SE, máy 16:9) cặp đôi bị đẩy lên
+    — chữ chỉ co theo vw sẽ đè vào họ.
+  */
   /** Tên cô dâu chú rể trên trang bìa poster: in hoa, giãn chữ rộng */
-  heroName: { size: "clamp(1.5rem, 7.4vw, 3.25rem)", line: "1.12", tracking: "0.16em" },
+  heroName: { size: "clamp(1.375rem, min(7.4vw, 3.6svh), 3.25rem)", line: "1.12", tracking: "0.16em" },
   /** Dấu "&" Great Vibes giữa hai tên */
-  heroAmp: { size: "clamp(2.125rem, 9.4vw, 4rem)", line: "1", tracking: "0em" },
+  heroAmp: { size: "clamp(1.875rem, min(9.4vw, 4.6svh), 4rem)", line: "1", tracking: "0em" },
   /** Tên khách mời dưới dòng "Thân gửi" trên trang bìa poster — nhỏ, không tranh điểm nhìn với tiêu đề */
-  heroGuest: { size: "clamp(1.1875rem, 5vw, 1.75rem)", line: "1.1", tracking: "0.02em" },
+  heroGuest: { size: "clamp(1.0625rem, min(5vw, 2.5svh), 1.75rem)", line: "1.1", tracking: "0.02em" },
   /** Ngày trên trang bìa poster */
-  heroDate: { size: "clamp(1rem, 4.4vw, 1.625rem)", line: "1.2", tracking: "0.36em" },
+  heroDate: { size: "clamp(0.9375rem, min(4.4vw, 2.2svh), 1.625rem)", line: "1.2", tracking: "0.36em" },
   /** Dòng chữ nhỏ in hoa trên tiêu đề section */
   eyebrow: { size: "0.75rem", line: "1.2", tracking: "0.26em" },
 } as const;

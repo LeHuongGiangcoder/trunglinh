@@ -69,7 +69,7 @@ function PosterHero() {
               data-reveal
               data-hero
               data-reveal-style="wipe"
-              className="wipe-mask h-auto w-[min(72%,32rem)]"
+              className="wipe-mask h-auto w-[min(72%,32rem,40svh)]"
             />
           ) : (
             <span className="font-display text-h1 uppercase">{hero.titleAlt}</span>
@@ -98,7 +98,7 @@ function PosterHero() {
             data-reveal
             data-hero
             data-reveal-delay="1200"
-            className="mt-stack flex flex-col items-center font-title text-hero-name uppercase text-harbor"
+            className="mt-tight flex flex-col items-center font-title text-hero-name uppercase text-harbor"
           >
             <span>{couple.groomGiven}</span>
             <span aria-hidden className="font-amp text-hero-amp normal-case">
