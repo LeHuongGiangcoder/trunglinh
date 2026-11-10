@@ -44,6 +44,7 @@ export const assets = {
     "rsvp-paper-bottom": { src: "/brand/elements/rsvp-paper-bottom.webp", width: 2480, height: 631 },
     "rsvp-paper-middle": { src: "/brand/elements/rsvp-paper-middle.webp", width: 2480, height: 1613 },
     "rsvp-paper-top": { src: "/brand/elements/rsvp-paper-top.webp", width: 2480, height: 1263 },
+    "save-the-date-card": { src: "/brand/elements/save-the-date-card.webp", width: 4800, height: 4072 },
     "save-the-date-script": { src: "/brand/elements/save-the-date-script.webp", width: 1200, height: 724 },
     "stamp-frame": { src: "/brand/elements/stamp-frame.webp", width: 1100, height: 1068 },
     "swan-seal": { src: "/brand/elements/swan-seal.webp", width: 600, height: 600 },

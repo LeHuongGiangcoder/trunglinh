@@ -5,33 +5,49 @@ import { design, saveTheDate } from "@/content/client";
 import { background as resolveBackground, element } from "@/lib/assets";
 
 /*
-  Thẻ Save the Date — dựng lại đúng file layout trong brand/save the date.
+  Thẻ Save the Date — dựng lại theo file layout trong brand/save the date.
 
-  Mọi khối là một layer đặt theo % của artboard gốc 4961×7016 (khổ A), nên
-  thẻ co giãn nguyên khối mà không lệch: trên điện thoại tràn hết bề ngang,
-  trên màn rộng thành một tấm thiệp đặt giữa nền giấy.
+  Mọi khối là một layer đặt theo % của artboard, nên thẻ co giãn nguyên khối
+  mà không lệch: trên điện thoại tràn hết bề ngang, trên màn rộng thành một
+  tấm thiệp đặt giữa nền giấy.
+
+  Artboard gốc 4961×7016; thẻ lịch bản mới cao hơn (chừa chỗ cho dòng ngày và
+  giờ) nên artboard kéo dài xuống cho vừa chân thẻ.
 
   Chỉ chữ "Save the Date!" có animation (wipe); các khối còn lại đứng yên.
 
   Thứ tự lớp, dưới lên: nền giấy → hai ảnh → chữ "Save the Date!" →
-  thẻ lịch răng cưa (đè lên chân ảnh trái) → huy hiệu thiên nga → dòng ngày.
+  thẻ lịch răng cưa (đè lên chân ảnh trái) → huy hiệu thiên nga → ngày + giờ.
 */
 
-/** Toạ độ đo từ layout.png, đổi ra % artboard. */
+const W = 4961;
+const CARD = { x: 81, y: 3761, w: 4800, h: 4072 };
+const H = CARD.y + CARD.h;
+
+const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
+/** Khung theo pixel artboard → style % để co theo khung chứa. */
+const box = (x: number, y: number, w: number, h?: number) => ({
+  left: pct(x, W),
+  top: pct(y, H),
+  width: pct(w, W),
+  ...(h ? { height: pct(h, H) } : {}),
+});
+
+/** Toạ độ đo từ layout.png (pixel artboard). */
 const FRAME = {
-  photoLeft: { left: "0%", top: "0%", width: "48.18%", height: "55.59%" },
-  photoRight: { left: "51.91%", top: "3.75%", width: "45.33%", height: "48.05%" },
-  script: { left: "3.77%", top: "5.03%", width: "41.97%" },
-  card: { left: "1.63%", top: "53.61%", width: "96.76%" },
-  seal: { left: "42.41%", top: "47.38%", width: "15.18%" },
-  /** Khoảng trống giữa "THE WEDDING OF" và tên — dòng ngày nằm giữa khoảng này. */
-  date: { top: "79.8%" },
+  photoLeft: box(0, 0, 2390, 3900),
+  photoRight: box(2575, 263, 2249, 3371),
+  script: box(187, 353, 2082),
+  card: box(CARD.x, CARD.y, CARD.w),
+  seal: box(2104, 3324, 753),
+  /** Ngày + giờ: ngay dưới "THE WEDDING OF", trên tên hai bạn. */
+  details: { top: pct(CARD.y + 1560, H) },
 } as const;
 
 export function SaveTheDate() {
   const paper = resolveBackground(design.saveTheDate.background);
   const script = element("save-the-date-script");
-  const card = element("calendar-card");
+  const card = element("save-the-date-card");
   const seal = element("swan-seal");
   const [left, right] = saveTheDate.photos;
 
@@ -47,7 +63,7 @@ export function SaveTheDate() {
         {saveTheDate.title} — {saveTheDate.date}
       </h2>
 
-      <div className="@container relative mx-auto aspect-[4961/7016] w-full overflow-hidden sm:max-w-prose sm:rounded-paper sm:shadow-lift">
+      <div className="@container relative mx-auto aspect-[4961/7833] w-full overflow-hidden sm:max-w-prose sm:rounded-paper sm:shadow-lift">
         {paper ? (
           <Image src={paper.src} alt="" fill sizes="(min-width: 40rem) 40rem, 100vw" className="object-cover" />
         ) : null}
@@ -110,27 +126,27 @@ export function SaveTheDate() {
           />
         ) : null}
 
-        <p
-          aria-hidden
-          className="absolute inset-x-0 -translate-y-1/2 text-center font-body text-poster font-semibold text-cocoa"
-          style={FRAME.date}
+        <div
+          className="absolute inset-x-0 flex flex-col items-center text-center font-body text-cocoa"
+          style={FRAME.details}
         >
-          {saveTheDate.date}
-        </p>
-      </div>
+          <p aria-hidden className="text-poster font-semibold">
+            {saveTheDate.date}
+          </p>
 
-      {/* Giờ đón khách / khai tiệc — nằm ngoài artboard vì khoảng trống trong thẻ quá hẹp trên điện thoại. */}
-      <ul
-        data-reveal
-        className="mx-auto grid w-full max-w-prose grid-cols-2 gap-stack px-gutter py-section text-center text-cocoa sm:pb-0"
-      >
-        {saveTheDate.schedule.map((item) => (
-          <li key={item.time} className="flex flex-col items-center gap-tight">
-            <span className="font-title text-h3">{item.time}</span>
-            <span className="text-small text-tone-muted">{item.label}</span>
-          </li>
-        ))}
-      </ul>
+          {/* Hai cột đối xứng quanh một vạch dọc: giờ trên, việc dưới, cùng căn giữa. */}
+          <ul className="mt-tight grid w-[94%] grid-cols-2 divide-x divide-cocoa">
+            {saveTheDate.schedule.map((item) => (
+              <li key={item.time} className="flex flex-col items-center px-tight">
+                <span className="font-title text-poster-note italic">{item.time}</span>
+                <span className="text-poster-label text-balance">{item.label}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-stack max-w-[80%] font-body text-poster-label italic text-balance">{saveTheDate.note}</p>
+        </div>
+      </div>
     </SectionWrapper>
   );
 }
