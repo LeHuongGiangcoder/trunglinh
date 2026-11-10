@@ -118,6 +118,19 @@ export function SaveTheDate() {
           {saveTheDate.date}
         </p>
       </div>
+
+      {/* Giờ đón khách / khai tiệc — nằm ngoài artboard vì khoảng trống trong thẻ quá hẹp trên điện thoại. */}
+      <ul
+        data-reveal
+        className="mx-auto grid w-full max-w-prose grid-cols-2 gap-stack px-gutter py-section text-center text-cocoa sm:pb-0"
+      >
+        {saveTheDate.schedule.map((item) => (
+          <li key={item.time} className="flex flex-col items-center gap-tight">
+            <span className="font-title text-h3">{item.time}</span>
+            <span className="text-small text-tone-muted">{item.label}</span>
+          </li>
+        ))}
+      </ul>
     </SectionWrapper>
   );
 }

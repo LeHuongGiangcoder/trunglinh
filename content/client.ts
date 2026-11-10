@@ -252,6 +252,11 @@ export const hero = {
 export const saveTheDate = {
   title: "Save the Date",
   date: "10.12.2026",
+  /** Giờ in ngay dưới dòng ngày, giữa "THE WEDDING OF" và tên hai bạn. */
+  schedule: [
+    { time: "16:30", label: "Đón khách & Photobooth" },
+    { time: "18:00", label: "Khai tiệc" },
+  ],
   /** Trái: khung cao sát mép trên · Phải: khung lệch xuống. Ảnh dọc 2:3. */
   photos: [
     { src: "/images/save-the-date-01.jpg", alt: "Cô dâu chú rể dưới tấm voan bên chiếc xe cổ" },
