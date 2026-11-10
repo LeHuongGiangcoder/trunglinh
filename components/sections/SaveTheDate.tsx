@@ -21,7 +21,7 @@ import { background as resolveBackground, element } from "@/lib/assets";
 */
 
 const W = 4961;
-const CARD = { x: 81, y: 3761, w: 4800, h: 4072 };
+const CARD = { x: 81, y: 3761, w: 4800, h: 4432 };
 const H = CARD.y + CARD.h;
 
 const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
@@ -38,7 +38,7 @@ const FRAME = {
   photoLeft: box(0, 0, 2390, 3900),
   photoRight: box(2575, 263, 2249, 3371),
   script: box(187, 353, 2082),
-  card: box(CARD.x, CARD.y, CARD.w),
+  card: box(CARD.x, CARD.y, CARD.w, CARD.h),
   seal: box(2104, 3324, 753),
   /** Ngày + giờ: ngay dưới "THE WEDDING OF", trên tên hai bạn. */
   details: { top: pct(CARD.y + 1560, H) },
@@ -47,7 +47,7 @@ const FRAME = {
 export function SaveTheDate() {
   const paper = resolveBackground(design.saveTheDate.background);
   const script = element("save-the-date-script");
-  const card = element("save-the-date-card");
+  const card = element("save-the-date-stamp");
   const seal = element("swan-seal");
   const [left, right] = saveTheDate.photos;
 
@@ -63,7 +63,7 @@ export function SaveTheDate() {
         {saveTheDate.title} — {saveTheDate.date}
       </h2>
 
-      <div className="@container relative mx-auto aspect-[4961/7833] w-full overflow-hidden sm:max-w-prose sm:rounded-paper sm:shadow-lift">
+      <div className="@container relative mx-auto aspect-[4961/8193] w-full overflow-hidden sm:max-w-prose sm:rounded-paper sm:shadow-lift">
         {paper ? (
           <Image src={paper.src} alt="" fill sizes="(min-width: 40rem) 40rem, 100vw" className="object-cover" />
         ) : null}
@@ -109,7 +109,7 @@ export function SaveTheDate() {
             height={card.height}
             alt="Lịch tháng 12, ngày cưới được đánh dấu — The wedding of Trung & Linh"
             sizes="(min-width: 40rem) 39rem, 97vw"
-            className="absolute h-auto"
+            className="absolute"
             style={FRAME.card}
           />
         ) : null}
